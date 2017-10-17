@@ -129,7 +129,6 @@ GameObject:
   - component: {fileID: 4779204796279740}
   - component: {fileID: 54215889389800658}
   - component: {fileID: 95197655300455832}
-  - component: {fileID: 114094200336436102}
   m_Layer: 0
   m_Name: CubeSheepy
   m_TagString: Untagged
@@ -572,14 +571,3 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114094200336436102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931969463074336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50d6c625a53566f4aa10fb5f16b533de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
