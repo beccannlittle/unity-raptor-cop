@@ -5,7 +5,8 @@ using UnityEngine;
 public class BasicSheep : MonoBehaviour {
 	public float hunger = 50.0f;
 	public float health = 15.0f;
-	private float hungerDecayRate = 10.0f;
+	private float hungerDecayRateAmount = 10.0f;
+	public float hungerDecayRateTime = 3.0f;
 	public float hungerThresholdMin = 30.0f;
 	public float hungerThresholdMax = 100.0f;
 	// Use this for initialization
@@ -29,9 +30,9 @@ public class BasicSheep : MonoBehaviour {
 	IEnumerator HungerDecay(){
 		while(health > 0.0f && hunger > 0.0f){
 			float oldHunger = hunger;
-			hunger = oldHunger - hungerDecayRate;
+			hunger = oldHunger - hungerDecayRateAmount;
 			Debug.Log ("HungerDecays from ["+oldHunger+"] to ["+hunger+"]");
-			yield return new WaitForSeconds(1.0f);
+			yield return new WaitForSeconds(hungerDecayRateTime);
 		}
 		Debug.Log ("Death by Starvation");
 	}
