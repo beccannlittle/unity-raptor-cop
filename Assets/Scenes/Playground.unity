@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -270,7 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f566f783e40b8499c3d7b36c938fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sheepType: {fileID: 11400000, guid: 4f172208a24c91f4581294e85c016b9f, type: 2}
   hunger: 50
+  health: 15
+  hungerDecayRateAmount: 0
+  hungerDecayRateTime: 0
   hungerThresholdMin: 30
   hungerThresholdMax: 100
 --- !u!135 &868718965
@@ -421,7 +425,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142317419}
   m_LocalRotation: {x: -0.4455681, y: 0.48092666, z: 0.3115322, w: 0.6878418}
-  m_LocalPosition: {x: -196.25113, y: 216.26271, z: 73.278015}
+  m_LocalPosition: {x: -152.17224, y: 141.50996, z: 97.12619}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049477344}
