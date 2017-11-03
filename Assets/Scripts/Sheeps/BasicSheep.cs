@@ -10,10 +10,11 @@ public class BasicSheep : MonoBehaviour {
 	public float hungerDecayRateTime;
 	public float hungerThresholdMin;
 	public float hungerThresholdMax;
+	public float startledDistance;
 
 	void Start(){
 		InitializeStartingValues(sheepType);
-		Debug.Log ("Starting Hunger Value: "+hunger);
+		//Debug.Log ("Starting Hunger Value: "+hunger);
 	}
 
 	void InitializeStartingValues(Sheep sheepT) {
@@ -23,6 +24,10 @@ public class BasicSheep : MonoBehaviour {
 		hungerDecayRateTime = sheepT.getHungerDecayRateTime ();
 		hungerThresholdMax = sheepT.getHungerThresholdMax ();
 		hungerThresholdMin = sheepT.getHungerThresholdMin ();
+		startledDistance = sheepT.getStartledDistance ();
+	}
+	public void Die(){
+		Destroy (gameObject);
 	}
 
 }

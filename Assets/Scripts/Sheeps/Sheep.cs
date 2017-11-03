@@ -10,7 +10,7 @@ public class Sheep : ScriptableObject {
 	public float hungerDecayRateTime = 3.0f;
 	public float hungerThresholdMin = 30.0f;
 	public float hungerThresholdMax = 100.0f;
-
+	public float startledDistance = 30.0f;
 	public float getHunger(){
 		return hunger;
 	}
@@ -28,5 +28,9 @@ public class Sheep : ScriptableObject {
 	}
 	public float getHungerThresholdMax(){
 		return hungerThresholdMax;
+	}
+
+	public float getStartledDistance(){
+		return startledDistance;
 	}
 }

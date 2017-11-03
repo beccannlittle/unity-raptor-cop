@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c339f93b656304f8d74f4d7969672d, type: 3}
   m_Name: BasicSheepData
   m_EditorClassIdentifier: 
-  hunger: 50
+  hunger: 55
   health: 15
   hungerDecayRateAmount: 10
   hungerDecayRateTime: 3
   hungerThresholdMin: 30
   hungerThresholdMax: 100
+  startledDistance: 5
