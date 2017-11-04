@@ -36,14 +36,21 @@ public class SheepStateController : MonoBehaviour
 			DoDeadThings ();
 		}
 		CheckStatus ();
+		if (baseSheep.trackingTarget) {
+			baseSheep.TurnTo (baseSheep.trackingTarget);
+		}
 	}
 
 	public void OnTriggerStay(){
-		state = State.Startled;
+		if(state != State.Dead && state != State.Petrified){
+			state = State.Startled;
+		}
 	}
 
 	public void OnTriggerExit(){
-		state = State.Idle;
+		if(state != State.Dead && state != State.Petrified){
+			state = State.Idle;
+		}
 	}
 
 	void CheckStatus(){
@@ -58,28 +65,34 @@ public class SheepStateController : MonoBehaviour
 	{
 		//Perform Idle Code
 		ChangeColor (Color.white);
-		baseSheep.hunger = baseSheep.hunger - (baseSheep.hungerDecayRateAmount * Time.deltaTime);
+		baseSheep.TickHunger (true);
 		//Should I Leave Idle State?
-		CheckForHungry ();
+		if (baseSheep.hunger <= baseSheep.hungerThresholdMin) {
+			Debug.Log ("TOO HUNGRY MUST EAT! Hunger: " + baseSheep.hunger);
+			state = State.Graze;
+		}
 	}
 
 	void DoGrazeThings ()
 	{
 		ChangeColor (Color.green);
-		baseSheep.hunger = baseSheep.hunger + (baseSheep.hungerDecayRateAmount * Time.deltaTime);
+		baseSheep.TickHunger (false);
 		//Should I Leave Graze State?
-		CheckForFull ();
+		if (baseSheep.hunger >= baseSheep.hungerThresholdMax) {
+			Debug.Log ("Ahhhh nice and full! Hunger: " + baseSheep.hunger);
+			state = State.Idle;
+		}
 	}
 
 	void DoStartledThings ()
 	{
-		baseSheep.hunger = baseSheep.hunger - (baseSheep.hungerDecayRateAmount * Time.deltaTime);
+		baseSheep.TickHunger (false);
 		ChangeColor (Color.yellow);
 	}
 
 	void DoPetrifiedThings ()
 	{
-		baseSheep.health = baseSheep.health - (2.0f * Time.deltaTime);
+		baseSheep.TakeDamage (2.0f);
 		ChangeColor (Color.grey);
 	}
 
@@ -88,21 +101,6 @@ public class SheepStateController : MonoBehaviour
 		ChangeColor (Color.black);
 		Debug.Log ("A Sheep has Died");
 		baseSheep.Die ();
-	}
-	public void CheckForHungry ()
-	{
-		if (baseSheep.hunger <= baseSheep.hungerThresholdMin) {
-			Debug.Log ("TOO HUNGRY MUST EAT! Hunger: " + baseSheep.hunger);
-			state = State.Graze;
-		}
-	}
-
-	public void CheckForFull ()
-	{
-		if (baseSheep.hunger >= baseSheep.hungerThresholdMax) {
-			Debug.Log ("Ahhhh nice and full! Hunger: " + baseSheep.hunger);
-			state = State.Idle;
-		}
 	}
 
 	public void CheckForStartled (State s)

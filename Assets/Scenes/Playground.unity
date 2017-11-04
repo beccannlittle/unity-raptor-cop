@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 87307091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 9.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 643187973}
@@ -432,11 +432,9 @@ GameObject:
   m_Component:
   - component: {fileID: 868718966}
   - component: {fileID: 868718965}
-  - component: {fileID: 868718964}
   - component: {fileID: 868718963}
   - component: {fileID: 868718961}
   - component: {fileID: 868718962}
-  - component: {fileID: 868718967}
   m_Layer: 0
   m_Name: CubeSheepy
   m_TagString: Untagged
@@ -474,7 +472,10 @@ MonoBehaviour:
   hungerDecayRateTime: 0
   hungerThresholdMin: 30
   hungerThresholdMax: 100
-  startledDistance: 20
+  startledDistance: 25
+  trackingTarget: {fileID: 162319430}
+  angleOfSight: 30
+  RotationSpeed: 5
 --- !u!65 &868718963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -486,25 +487,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.5, y: 7, z: 14.5}
-  m_Center: {x: -1.25, y: -4.8, z: -10.5}
---- !u!95 &868718964
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 95197655300455832, guid: 5555a71b39b595442844cf21246cbbad,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 868718960}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 07d399c422c141b4fbaf33d08346f415, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_Center: {x: -1.25, y: -4.8, z: -1}
 --- !u!54 &868718965
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -528,27 +511,14 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 868718960}
-  m_LocalRotation: {x: -0, y: -0.8306502, z: -0, w: 0.5567946}
+  m_LocalRotation: {x: 0, y: -0.89037174, z: 0, w: 0.45523423}
   m_LocalPosition: {x: 321.1118, y: 148.36174, z: 250.0435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 87307092}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -112.33101, z: 0}
---- !u!136 &868718967
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 868718960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 3
-  m_Height: 30
-  m_Direction: 2
-  m_Center: {x: -1.02, y: -4.3, z: 15}
+  m_LocalEulerAnglesHint: {x: 0, y: -125.84, z: 0}
 --- !u!4 &1047043385 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 59127fc4b92eb164e9e804e13e026d5a, type: 3}
@@ -677,8 +647,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142317419}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -160.23172, y: 249.64497, z: 68.2159}
+  m_LocalRotation: {x: -0.07250332, y: 0.9266284, z: 0.28087384, w: 0.23919249}
+  m_LocalPosition: {x: -136.169, y: 232.61171, z: 130.86844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049477344}
