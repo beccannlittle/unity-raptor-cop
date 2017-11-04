@@ -17,4 +17,4 @@ MonoBehaviour:
   hungerDecayRateTime: 3
   hungerThresholdMin: 30
   hungerThresholdMax: 100
-  startledDistance: 15
+  startledDistance: 45

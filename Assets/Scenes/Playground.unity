@@ -472,9 +472,9 @@ MonoBehaviour:
   hungerDecayRateTime: 0
   hungerThresholdMin: 30
   hungerThresholdMax: 100
-  startledDistance: 25
+  startledDistance: 45
   trackingTarget: {fileID: 162319430}
-  angleOfSight: 30
+  angleOfSight: 70
   RotationSpeed: 5
 --- !u!65 &868718963
 BoxCollider:
