@@ -15,15 +15,18 @@ public class SheepStateController : MonoBehaviour
 
 	public State state;
 	private BasicSheep baseSheep;
+	private GameObject player;
+
 	void Start ()
 	{
 		state = State.Idle;
-		baseSheep = gameObject.GetComponent<BasicSheep>();
+		baseSheep = gameObject.GetComponent<BasicSheep> ();
+		player = GameObject.FindWithTag ("Player");
 	}
-
 
 	public void Update ()
 	{
+		//Do whatever the current State tells you to do
 		if (state.Equals (State.Idle)) {
 			DoIdleThings ();
 		} else if (state.Equals (State.Graze)) {
@@ -35,12 +38,11 @@ public class SheepStateController : MonoBehaviour
 		} else if (state.Equals (State.Dead)) {
 			DoDeadThings ();
 		}
-		CheckStatus ();
-		if (baseSheep.trackingTarget) {
-			baseSheep.TurnTo (baseSheep.trackingTarget);
-		}
+		//Should I change my State?
+		CheckChangeState ();
 	}
 
+	/*
 	public void OnTriggerStay(){
 		if(state != State.Dead && state != State.Petrified){
 			state = State.Startled;
@@ -52,77 +54,65 @@ public class SheepStateController : MonoBehaviour
 			state = State.Idle;
 		}
 	}
+	*/
 
-	void CheckStatus(){
+	void CheckChangeState ()
+	{
 		if (baseSheep.health <= 0) {
 			state = State.Dead;
 		} else if (baseSheep.hunger <= 0) {
 			state = State.Petrified;
+		} else if (baseSheep.hunger <= baseSheep.hungerThresholdMin) {
+			state = State.Graze;
+		} else if (baseSheep.hunger >= baseSheep.hungerThresholdMax) {
+			state = State.Idle;
+		} else if (DistanceToPlayer () < baseSheep.petrifiedDistance) {
+			state = State.Startled;
+		} else if (DistanceToPlayer () < baseSheep.startledDistance) {
+			state = State.Startled;
 		}
 	}
 
 	void DoIdleThings ()
 	{
-		//Perform Idle Code
 		ChangeColor (Color.white);
 		baseSheep.TickHunger (true);
-		//Should I Leave Idle State?
-		if (baseSheep.hunger <= baseSheep.hungerThresholdMin) {
-			Debug.Log ("TOO HUNGRY MUST EAT! Hunger: " + baseSheep.hunger);
-			state = State.Graze;
-		}
 	}
 
 	void DoGrazeThings ()
 	{
 		ChangeColor (Color.green);
 		baseSheep.TickHunger (false);
-		//Should I Leave Graze State?
-		if (baseSheep.hunger >= baseSheep.hungerThresholdMax) {
-			Debug.Log ("Ahhhh nice and full! Hunger: " + baseSheep.hunger);
-			state = State.Idle;
-		}
 	}
 
 	void DoStartledThings ()
 	{
-		baseSheep.TickHunger (false);
 		ChangeColor (Color.yellow);
+		baseSheep.TickHunger (false);
+		baseSheep.TurnTo (player);
 	}
 
 	void DoPetrifiedThings ()
 	{
-		baseSheep.TakeDamage (2.0f);
 		ChangeColor (Color.grey);
+		baseSheep.TakeDamage (2.0f);
 	}
 
 	void DoDeadThings ()
 	{
 		ChangeColor (Color.black);
-		Debug.Log ("A Sheep has Died");
 		baseSheep.Die ();
 	}
 
-	public void CheckForStartled (State s)
+	public float DistanceToPlayer ()
 	{
-		GameObject player = GameObject.FindWithTag ("Player");
-		float distanceToPlayer = Mathf.Abs (Vector3.Distance (player.transform.position, gameObject.transform.position));
-		//Debug.Log ("Distance to Player: "+distanceToPlayer);
-		if (distanceToPlayer < baseSheep.startledDistance) {
-			Debug.Log ("The Raptor is near me! I'm so Startled!");
-			state = State.Startled;
-		} else {
-			Debug.Log ("I Escaped!");
-			state = s;
-		}
+		return Mathf.Abs (Vector3.Distance (player.transform.position, gameObject.transform.position));
 	}
 
 	public void ChangeColor (Color newcolor)
 	{
-		//Debug.Log ("I am being Idle");
 		foreach (Renderer childRenderer in GetComponentsInChildren<Renderer>()) {
 			childRenderer.material.color = newcolor;
-			//Debug.Log ("Found Child Object: "+childRenderer.gameObject.name);
 		}
 	}
 }
