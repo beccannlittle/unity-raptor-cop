@@ -13,6 +13,8 @@ public class Sheep : ScriptableObject
 	public float hungerThresholdMax = 100.0f;
 	public float startledDistance = 50.0f;
 	public float petrifiedDistance = 30.0f;
+	public float rotationSpeed = 5.0f;
+	public float angleOfSight = 25.0f;
 
 	public float getHunger (){return hunger;}
 
@@ -29,4 +31,8 @@ public class Sheep : ScriptableObject
 	public float getStartledDistance (){return startledDistance;}
 
 	public float getPetrifiedDistance (){return petrifiedDistance;}
+
+	public float getRotationSpeed(){return rotationSpeed;}
+
+	public float getAngleOfSight(){return angleOfSight;}
 }

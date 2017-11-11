@@ -14,6 +14,7 @@ public class SheepStateController : MonoBehaviour
 	}
 
 	public State state;
+	public GameObject[] friends;
 	private BasicSheep baseSheep;
 	private GameObject player;
 
@@ -42,40 +43,32 @@ public class SheepStateController : MonoBehaviour
 		CheckChangeState ();
 	}
 
-	/*
-	public void OnTriggerStay(){
-		if(state != State.Dead && state != State.Petrified){
-			state = State.Startled;
-		}
-	}
-
-	public void OnTriggerExit(){
-		if(state != State.Dead && state != State.Petrified){
-			state = State.Idle;
-		}
-	}
-	*/
-
 	void CheckChangeState ()
 	{
 		if (baseSheep.health <= 0) {
 			state = State.Dead;
+		} else if (DistanceToPlayer () < baseSheep.petrifiedDistance && baseSheep.CanSeeTarget(player)) {
+			state = State.Petrified;
+		} else if (state != State.Petrified && DistanceToPlayer () < baseSheep.startledDistance && baseSheep.CanSeeTarget(player)) {
+			state = State.Startled;
 		} else if (baseSheep.hunger <= 0) {
 			state = State.Petrified;
 		} else if (baseSheep.hunger <= baseSheep.hungerThresholdMin) {
 			state = State.Graze;
 		} else if (baseSheep.hunger >= baseSheep.hungerThresholdMax) {
 			state = State.Idle;
-		} else if (DistanceToPlayer () < baseSheep.petrifiedDistance) {
-			state = State.Startled;
-		} else if (DistanceToPlayer () < baseSheep.startledDistance) {
-			state = State.Startled;
 		}
 	}
 
 	void DoIdleThings ()
 	{
 		ChangeColor (Color.white);
+		//Choose One Wander or Nuzzle based on if a sheep is nearby and a random chance.
+		if(NearbySheepExists()){
+			//baseSheep.NuzzleNearbySheep (nearbySheep);	
+			baseSheep.Wander ();			
+		}
+			
 		baseSheep.TickHunger (true);
 	}
 
@@ -89,7 +82,7 @@ public class SheepStateController : MonoBehaviour
 	{
 		ChangeColor (Color.yellow);
 		baseSheep.TickHunger (false);
-		baseSheep.TurnTo (player);
+		baseSheep.TurnTo (player.transform);
 	}
 
 	void DoPetrifiedThings ()
@@ -108,7 +101,27 @@ public class SheepStateController : MonoBehaviour
 	{
 		return Mathf.Abs (Vector3.Distance (player.transform.position, gameObject.transform.position));
 	}
+	public bool NearbySheepExists(){
+		GameObject closestSheepFriend = GetClosestFriend ("sheep");
+		float distanceToClosestSheep = (closestSheepFriend.transform.position - gameObject.transform.position);
+		if(distanceToClosestSheep <= baseSheep.distSheepThreshold){
+			return true;
+		}
 
+		return false;
+	}
+	public GameObject GetClosestFriend(string friendType){
+		float closestDistanceSqr = Mathf.Infinity;
+		GameObject closestFriend = null;
+		foreach (GameObject friend in friends){
+			float distanceSqrToFriend = (friend.transform.position - gameObject.transform.position).sqrMagnitude;
+			if (distanceSqrToFriend < closestDistanceSqr) {
+				closestDistanceSqr = distanceSqrToFriend;
+				closestFriend = friend;
+			}
+		}
+		return closestFriend;
+	}
 	public void ChangeColor (Color newcolor)
 	{
 		foreach (Renderer childRenderer in GetComponentsInChildren<Renderer>()) {

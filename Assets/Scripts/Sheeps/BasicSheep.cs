@@ -13,11 +13,11 @@ public class BasicSheep : MonoBehaviour
 	public float hungerThresholdMax;
 	public float startledDistance;
 	public float petrifiedDistance;
+	public float distSheepThreshold;
 
 	public float angleOfSight = 25.0f;
-	public float RotationSpeed = 5.0f;
+	public float rotationSpeed = 5.0f;
 
-	private GameObject player;
 	void Start ()
 	{
 		InitializeStartingValues (sheepType);
@@ -33,15 +33,16 @@ public class BasicSheep : MonoBehaviour
 		hungerThresholdMin = sheepT.getHungerThresholdMin ();
 		startledDistance = sheepT.getStartledDistance ();
 		petrifiedDistance = sheepT.getPetrifiedDistance ();
-
-		player = GameObject.FindWithTag ("Player");
+		angleOfSight = sheepT.getAngleOfSight ();
+		rotationSpeed = sheepT.getRotationSpeed ();
+		distSheepThreshold = 50.0f;
 	}
 
 	public void TurnTo (Transform target)
 	{
 		Vector3 _direction = (target.position - transform.position).normalized;
 		Quaternion _lookRotation = Quaternion.LookRotation (_direction);
-		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime * RotationSpeed);
+		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime * rotationSpeed);
 	}
 
 	public void TickHunger (bool upDown)
@@ -64,11 +65,11 @@ public class BasicSheep : MonoBehaviour
 		health = health + (regenAmount * Time.deltaTime);
 	}
 
-	public bool CanSeePlayer ()
+	public bool CanSeeTarget (GameObject target)
 	{
-		Vector3 targetDirection = player.transform.position - transform.position;
-		float angleToPlayer = Vector3.Angle (targetDirection, transform.forward);
-		if (angleToPlayer <= angleOfSight) {
+		Vector3 targetDirection = target.transform.position - transform.position;
+		float angleToTarget = Vector3.Angle (targetDirection, transform.forward);
+		if (angleToTarget <= angleOfSight) {
 			return true;
 		} else {
 			return false;
