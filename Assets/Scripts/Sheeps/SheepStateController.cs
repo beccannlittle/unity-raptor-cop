@@ -64,9 +64,11 @@ public class SheepStateController : MonoBehaviour
 	{
 		ChangeColor (Color.white);
 		//Choose One Wander or Nuzzle based on if a sheep is nearby and a random chance.
-		if(NearbySheepExists()){
-			//baseSheep.NuzzleNearbySheep (nearbySheep);	
-			baseSheep.Wander ();			
+		GameObject nearbySheep = NearbySheepExists ();
+		if ((baseSheep.affectionMeter <= 30 && !(baseSheep.affectionMeter >= 100)) && nearbySheep != null) {
+			baseSheep.NuzzleNearbySheep (nearbySheep);	
+		} else {
+			baseSheep.Wander ();
 		}
 			
 		baseSheep.TickHunger (true);
@@ -82,6 +84,7 @@ public class SheepStateController : MonoBehaviour
 	{
 		ChangeColor (Color.yellow);
 		baseSheep.TickHunger (false);
+		baseSheep.MoveAwayFrom (player);
 		baseSheep.TurnTo (player.transform);
 	}
 
@@ -103,7 +106,7 @@ public class SheepStateController : MonoBehaviour
 	}
 	public bool NearbySheepExists(){
 		GameObject closestSheepFriend = GetClosestFriend ("sheep");
-		float distanceToClosestSheep = (closestSheepFriend.transform.position - gameObject.transform.position);
+		float distanceToClosestSheep = (closestSheepFriend.transform.position - gameObject.transform.position).magnitude;
 		if(distanceToClosestSheep <= baseSheep.distSheepThreshold){
 			return true;
 		}
