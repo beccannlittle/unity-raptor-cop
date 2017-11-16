@@ -6,7 +6,6 @@ public class Cartridge_Dead : IStateCartridge {
 
 	// Use this for initialization
 	public void Run (GameObject gobject) {
-		Debug.Log ("Being Dead");
 
 	}
 

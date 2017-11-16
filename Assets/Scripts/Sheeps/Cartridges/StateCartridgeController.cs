@@ -34,7 +34,7 @@ public class StateCartridgeController : MonoBehaviour {
 		} else if(state.Equals(State.Dead)){
 			currentCartridge = deadCartridge;
 		} else {
-			Debug.Log("No StateCartridge available for state= "+state.ToString() );
+			Debug.LogError("No StateCartridge available for state: "+state.ToString());
 			currentCartridge = null;
 		}
 

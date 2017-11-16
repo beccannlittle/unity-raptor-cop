@@ -47,7 +47,6 @@ public class SheepEnemyData : MonoBehaviour {
 	}
 
 	public void Wander(){
-		Debug.Log ("Wandering");
 		if(navAgent.remainingDistance <= 5.0f){
 			Vector3 newPos = RandomNavSphere (transform.position, wanderDistance, -1);
 			navAgent.SetDestination (newPos);
