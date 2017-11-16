@@ -15,13 +15,15 @@ public class SheepStateController : MonoBehaviour
 
 	public State state;
 	public GameObject[] friends;
-	private BasicSheep baseSheep;
+	private SheepEnemyData sheepMech;
+	private SheepEnemyData sheepData;
 	private GameObject player;
 
 	void Start ()
 	{
 		state = State.Idle;
-		baseSheep = gameObject.GetComponent<BasicSheep> ();
+		sheepMech = gameObject.GetComponent<SheepEnemyData> ();
+		sheepData = gameObject.GetComponent<SheepEnemyData> ();
 		player = GameObject.FindWithTag ("Player");
 	}
 
@@ -45,17 +47,17 @@ public class SheepStateController : MonoBehaviour
 
 	void CheckChangeState ()
 	{
-		if (baseSheep.health <= 0) {
+		if (sheepData.health <= 0) {
 			state = State.Dead;
-		} else if (DistanceToPlayer () < baseSheep.petrifiedDistance && baseSheep.CanSeeTarget(player)) {
+		} else if (DistanceToPlayer () < sheepData.petrifiedDistance && sheepMech.CanSeeTarget(player)) {
 			state = State.Petrified;
-		} else if (state != State.Petrified && DistanceToPlayer () < baseSheep.startledDistance && baseSheep.CanSeeTarget(player)) {
+		} else if (state != State.Petrified && DistanceToPlayer () < sheepData.startledDistance && sheepMech.CanSeeTarget(player)) {
 			state = State.Startled;
-		} else if (baseSheep.hunger <= 0) {
+		} else if (sheepData.hunger <= 0) {
 			state = State.Petrified;
-		} else if (baseSheep.hunger <= baseSheep.hungerThresholdMin) {
+		} else if (sheepData.hunger <= sheepData.sheepType.getMinHunger()) {
 			state = State.Graze;
-		} else if (baseSheep.hunger >= baseSheep.hungerThresholdMax) {
+		} else if (sheepData.hunger >= sheepData.sheepType.getMaxHunger()) {
 			state = State.Idle;
 		}
 	}
@@ -65,53 +67,53 @@ public class SheepStateController : MonoBehaviour
 		ChangeColor (Color.white);
 		//Choose One Wander or Nuzzle based on if a sheep is nearby and a random chance.
 		GameObject nearbySheep = NearbySheepExists ();
-		if ((baseSheep.affectionMeter <= 30 && !(baseSheep.affectionMeter >= 100)) && nearbySheep != null) {
-			baseSheep.NuzzleNearbySheep (nearbySheep);	
+		if (nearbySheep != null) {
+			//sheepMech.NuzzleNearbySheep (nearbySheep);	
 		} else {
-			baseSheep.Wander ();
+			sheepMech.Wander ();
 		}
 			
-		baseSheep.TickHunger (true);
+		sheepMech.TickHunger (true);
 	}
 
 	void DoGrazeThings ()
 	{
 		ChangeColor (Color.green);
-		baseSheep.TickHunger (false);
+		sheepMech.TickHunger (false);
 	}
 
 	void DoStartledThings ()
 	{
 		ChangeColor (Color.yellow);
-		baseSheep.TickHunger (false);
-		baseSheep.MoveAwayFrom (player);
-		baseSheep.TurnTo (player.transform);
+		sheepMech.TickHunger (false);
+		//sheepMech.MoveAwayFrom (player);
+		sheepMech.TurnTo (player.transform);
 	}
 
 	void DoPetrifiedThings ()
 	{
 		ChangeColor (Color.grey);
-		baseSheep.TakeDamage (2.0f);
+		sheepMech.TakeDamage (2.0f);
 	}
 
 	void DoDeadThings ()
 	{
 		ChangeColor (Color.black);
-		baseSheep.Die ();
+		sheepMech.Die ();
 	}
 
 	public float DistanceToPlayer ()
 	{
 		return Mathf.Abs (Vector3.Distance (player.transform.position, gameObject.transform.position));
 	}
-	public bool NearbySheepExists(){
+	public GameObject NearbySheepExists(){
 		GameObject closestSheepFriend = GetClosestFriend ("sheep");
 		float distanceToClosestSheep = (closestSheepFriend.transform.position - gameObject.transform.position).magnitude;
-		if(distanceToClosestSheep <= baseSheep.distSheepThreshold){
-			return true;
+		if(distanceToClosestSheep <= 100.0f){
+			return closestSheepFriend;
 		}
 
-		return false;
+		return null;
 	}
 	public GameObject GetClosestFriend(string friendType){
 		float closestDistanceSqr = Mathf.Infinity;

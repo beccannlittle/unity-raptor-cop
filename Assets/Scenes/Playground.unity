@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.5748171, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: de26ddeab75e9f24eabb782a122d2ed2, type: 2}
 --- !u!4 &162319430
 Transform:
   m_ObjectHideFlags: 0
@@ -302,10 +302,16 @@ Prefab:
       propertyPath: m_Name
       value: CubeSheepyGraphics
       objectReference: {fileID: 0}
+    - target: {fileID: 65430101725824362, guid: 5555a71b39b595442844cf21246cbbad,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114289413958513472, guid: 5555a71b39b595442844cf21246cbbad, type: 2}
     - {fileID: 114524919838136600, guid: 5555a71b39b595442844cf21246cbbad, type: 2}
     - {fileID: 54215889389800658, guid: 5555a71b39b595442844cf21246cbbad, type: 2}
+    - {fileID: 65430101725824362, guid: 5555a71b39b595442844cf21246cbbad, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5555a71b39b595442844cf21246cbbad, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1047043385 stripped
@@ -363,8 +369,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142317419}
-  m_LocalRotation: {x: 0.11388219, y: 0.3956169, z: 0.049510576, w: -0.9099818}
-  m_LocalPosition: {x: -24.940277, y: 195.5616, z: 55.09027}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000004371139}
+  m_LocalPosition: {x: -121.27548, y: 247.74997, z: 173.1177}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049477344}
@@ -681,10 +687,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1857607918}
-  - component: {fileID: 1857607917}
-  - component: {fileID: 1857607916}
   - component: {fileID: 1857607915}
+  - component: {fileID: 1857607916}
+  - component: {fileID: 1857607917}
   - component: {fileID: 1857607919}
+  - component: {fileID: 1857607920}
   m_Layer: 0
   m_Name: CubeSheepy
   m_TagString: Untagged
@@ -715,32 +722,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1857607914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a69051a7a1e99c947b8764d06bd6df82, type: 3}
+  m_Script: {fileID: 11500000, guid: a027c3754b28dab4594f3d36958cd7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
---- !u!114 &1857607917
-MonoBehaviour:
+--- !u!195 &1857607917
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1857607914}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f566f783e40b8499c3d7b36c938fbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sheepType: {fileID: 11400000, guid: 4f172208a24c91f4581294e85c016b9f, type: 2}
-  hunger: 50
-  health: 15
-  hungerDecayRateAmount: 0
-  hungerDecayRateTime: 0
-  hungerThresholdMin: 30
-  hungerThresholdMax: 100
-  startledDistance: 45
-  petrifiedDistance: 0
-  angleOfSight: 70
-  rotationSpeed: 5
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 4.95
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &1857607918
 Transform:
   m_ObjectHideFlags: 0
@@ -748,15 +754,35 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1857607914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 329.5, y: 171.13, z: 283.23}
+  m_LocalPosition: {x: 329.5, y: 145.14, z: 283.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1168988761}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &1857607919
-CharacterController:
+--- !u!114 &1857607919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1857607914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26418f60ef80c1e4f961a5da3db535ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sheepType: {fileID: 11400000, guid: bd2e115e420022544848e525ef9b6bf4, type: 2}
+  hunger: 0
+  health: 0
+  hungerDecayRateAmount: 0
+  hungerDecayRateTime: 0
+  startledDistance: 0
+  petrifiedDistance: 0
+  angleOfSight: 0
+  wanderDistance: 0
+--- !u!65 &1857607920
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -765,13 +791,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 6.905548, y: 7.697113, z: 14.840607}
+  m_Center: {x: 0.024002075, y: -1.1203461, z: 1.8151398}
 --- !u!1 &1927270032
 GameObject:
   m_ObjectHideFlags: 0
