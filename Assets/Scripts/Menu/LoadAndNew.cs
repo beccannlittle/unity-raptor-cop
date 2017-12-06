@@ -40,6 +40,9 @@ public class LoadAndNew : MonoBehaviour {
 			LoadError.SetActive (true);
 		}
 	}
+	public void LoadMainMenu(){
+		SceneManager.LoadScene ("TitleScreen");
+	}
 
 	public void QuitGame(){
 		Application.Quit ();
