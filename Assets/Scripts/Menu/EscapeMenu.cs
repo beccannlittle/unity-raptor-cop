@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class EscapeMenu : MonoBehaviour {
 	public GameObject escapeMenu;
+	public GameObject gameManager;
 
 	// Update is called once per frame
 	void Update () {
 		if(PressedEscape){
-			escapeMenu.SetActive (!escapeMenu.activeSelf);
+			ToggleEscapeMenuVisibility ();
 		}
 	}
 
@@ -19,6 +20,20 @@ public class EscapeMenu : MonoBehaviour {
 			return Input.GetKeyDown(KeyCode.Escape);
 		}
 	}
-	//this.GetComponent<SavingTheGame> ().SaveGame ();
-	//SceneManager.LoadScene ("TitleScreen");
+	public void SaveGame(){
+		Debug.Log ("[GameManager]: Saving the game");
+		gameManager.GetComponent<SavingTheGame> ().SaveGame ();
+
+	}
+	public void QuitToMenu(bool shouldSaveGame){
+		if(shouldSaveGame){
+			SaveGame();
+		}
+		SceneManager.LoadScene ("TitleScreen");	
+	}
+
+	public void ToggleEscapeMenuVisibility(){
+		escapeMenu.SetActive (!escapeMenu.activeSelf);
+	}
+
 }
