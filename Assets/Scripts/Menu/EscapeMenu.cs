@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EscapeMenu : MonoBehaviour {
-	public GameObject escapeMenu;
+	public GameObject escapeMenuPanel;
+	public GameObject optionsMenuPanel;
 	public GameObject gameManager;
 
 	// Update is called once per frame
@@ -33,7 +34,18 @@ public class EscapeMenu : MonoBehaviour {
 	}
 
 	public void ToggleEscapeMenuVisibility(){
-		escapeMenu.SetActive (!escapeMenu.activeSelf);
+		escapeMenuPanel.SetActive (!escapeMenuPanel.activeSelf);
 	}
+	public void ToggleOptionsMenuVisibility(bool shouldSaveOptions){
+		if(shouldSaveOptions){
+			SaveOptions ();
+		}
+		optionsMenuPanel.SetActive(optionsMenuPanel.activeSelf)
+	}
+	public void SaveOptions(){
+		Debug.Log ("[GameManager]: Saving the game");
+		//Options newoptions;
+		//gameManager.GetComponent<Options> ().SaveOptions (newoptions);
 
+	}
 }
