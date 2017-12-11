@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class Scene001Loader : MonoBehaviour {
+public class LoadingTheGame : MonoBehaviour {
 	public GameObject player;
 	public string fileName = "savegame.data";
 	public float PlayerPosX;
