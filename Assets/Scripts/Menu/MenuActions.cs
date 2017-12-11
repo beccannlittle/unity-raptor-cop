@@ -6,7 +6,7 @@ public class MenuActions : MonoBehaviour {
 	public GameObject escapeMenu;
 
 	void Update () {
-		if(PressedEscape){
+		if(escapeMenu.activeSelf && PressedEscape){
 			escapeMenu.GetComponent<EscapeMenu>().ToggleEscapeMenuVisibility ();
 		}
 	}
