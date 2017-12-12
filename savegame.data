@@ -1,8 +1,8 @@
 Saving the Game
-PlayerPosX=332.6467
+PlayerPosX=328
 PlayerPosY=140.1005
-PlayerPosZ=178.4056
-PlayerRotateX=3.907985E-14
-PlayerRotateY=0.2273107
-PlayerRotateZ=1.421085E-14
+PlayerPosZ=174.2
+PlayerRotateX=-5.945521E-16
+PlayerRotateY=1.473517E-09
+PlayerRotateZ=0
 load10coins

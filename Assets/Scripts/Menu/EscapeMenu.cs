@@ -9,7 +9,7 @@ public class EscapeMenu : MonoBehaviour {
 
 	public void QuitToMenu(bool shouldSaveGame){
 		if(shouldSaveGame){
-			gameManager.GetComponent<SavingTheGame> ().SaveGame ();
+			//gameManager.GetComponent<GameControl> ().SaveGame ();
 		}
 		SceneManager.LoadScene ("TitleScreen");	
 	}

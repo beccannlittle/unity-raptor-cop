@@ -894,8 +894,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 865270808}
-  - component: {fileID: 865270805}
-  - component: {fileID: 865270806}
+  - component: {fileID: 865270807}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -903,7 +902,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &865270805
+--- !u!114 &865270807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -911,29 +910,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 865270804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93306b4098225444b1424fd6257849a, type: 3}
+  m_Script: {fileID: 11500000, guid: c256be4debea5234cba76779c0680b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 963333846}
-  fileName: savegame.data
-  PlayerPosX: 0
-  PlayerPosY: 0
-  PlayerPosZ: 0
-  PlayerRotX: 0
-  PlayerRotY: 0
-  PlayerRotZ: 0
---- !u!114 &865270806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 865270804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08bb0d80b0e422e439dd5fecb3cb61d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fileName: savegame.data
+  playerHealth: 50
 --- !u!4 &865270808
 Transform:
   m_ObjectHideFlags: 0
@@ -2164,6 +2144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escapeMenu: {fileID: 60289342}
+  optionsMenu: {fileID: 1537676014}
 --- !u!1 &1778288435
 GameObject:
   m_ObjectHideFlags: 0
