@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MenuActions : MonoBehaviour {
 	public GameObject escapeMenu;
+	public GameObject optionsMenu;
 
 	void Update () {
-		if(escapeMenu.activeSelf && PressedEscape){
+		if(!optionsMenu.activeSelf && PressedEscape){
 			escapeMenu.GetComponent<EscapeMenu>().ToggleEscapeMenuVisibility ();
 		}
 	}
