@@ -894,7 +894,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 865270808}
-  - component: {fileID: 865270807}
+  - component: {fileID: 865270805}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -902,7 +902,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &865270807
+--- !u!114 &865270805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -910,10 +910,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 865270804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c256be4debea5234cba76779c0680b6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a92e58e403f44d4ab162b3d6af34b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 50
+  masterVolumeEnabled: 0
+  sfxVolumeEnabled: 0
+  uiVolumeEnabled: 0
+  ambientVolumeEnabled: 0
+  masterVolume: 0
+  sfxVolume: 0
+  uiVolume: 0
+  ambientVolume: 0
 --- !u!4 &865270808
 Transform:
   m_ObjectHideFlags: 0
@@ -1004,8 +1011,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1537676018}
-        m_MethodName: ToggleOptionsMenuVisibility
-        m_Mode: 6
+        m_MethodName: SaveOptions
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1772,7 +1779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1537676015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1840,6 +1847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escapeMenuPanel: {fileID: 60289342}
+  gameManager: {fileID: 865270804}
 --- !u!1 &1624619274
 GameObject:
   m_ObjectHideFlags: 0
