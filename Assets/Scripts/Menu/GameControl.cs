@@ -9,7 +9,9 @@ public class GameControl : MonoBehaviour {
 
 	public static GameControl control;
 
-	public float playerHealth;
+	public float playerscore;
+	public int numSheepInExistence;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -23,32 +25,36 @@ public class GameControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void OnGUI () {
-		GUI.Label (new Rect (10, 10, 100, 30), "Health: " + playerHealth);
+		GUI.Label (new Rect (10, 10, 100, 30), "Score: " + playerscore);
+		GUI.Label (new Rect (10, 10, 150, 30), "Score: " + numSheepInExistence);
 	}
 
 	public void SaveOptions(){
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/gameOptions.dat");
+		FileStream file = File.Create (Application.persistentDataPath + "/savegame.dat");
 
-		GameOptionsData optionsData = new GameOptionsData ();
-		optionsData.playerHealth = playerHealth;
+		GameData optionsData = new GameData ();
+		optionsData.score = playerscore;
+		optionsData.numExistingSheep = numSheepInExistence;
 
 		bf.Serialize (file, optionsData);
 		file.Close ();
 	}
 	public void LoadOptions(){
-		if(File.Exists(Application.persistentDataPath + "/gameOptions.dat")){
+		if(File.Exists(Application.persistentDataPath + "/savegame.dat")){
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/gameOptions.dat", FileMode.Open);			
-			GameOptionsData data = (GameOptionsData)bf.Deserialize (file);
+			FileStream file = File.Open (Application.persistentDataPath + "/savegame.dat", FileMode.Open);			
+			GameData data = (GameData)bf.Deserialize (file);
 			file.Close ();
 
-			playerHealth = data.playerHealth;
+			playerscore = data.score;
+			numSheepInExistence = data.numExistingSheep;
 		}
 	}
 }
 
 [Serializable]
-class GameOptionsData {
-	public float playerHealth;
+class GameData {
+	public float score;
+	public int numExistingSheep;
 }
