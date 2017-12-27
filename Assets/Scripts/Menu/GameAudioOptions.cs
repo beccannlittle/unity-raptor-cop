@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UI;
 
 public class GameAudioOptions : MonoBehaviour {
 
@@ -68,7 +69,19 @@ public class GameAudioOptions : MonoBehaviour {
 			ambientVolume = data.ambientVolume;
 		}
 	}
+
+	public void MuteMasterVolume(bool value){masterVolumeEnabled = value;}
+	public void MuteSFXVolume(bool value){sfxVolumeEnabled = value;}
+	public void MuteUIVolume(bool value){uiVolumeEnabled = value;}
+	public void MuteAmbientVolume(bool value){ambientVolumeEnabled = value;}
+	public void UpdateMasterVolume(Slider slider){masterVolume = slider.value;}
+	public void UpdateSFXVolume(Slider slider){sfxVolume = slider.value;}
+	public void UpdateUIVolume(Slider slider){uiVolume = slider.value;}
+	public void UpdateAmbientVolume(Slider slider){ambientVolume = slider.value;}
+
 }
+
+
 
 [Serializable]
 class GameAudioOptionsData {
@@ -82,6 +95,4 @@ class GameAudioOptionsData {
 	public float sfxVolume;
 	public float uiVolume;
 	public float ambientVolume;
-
-
 }
