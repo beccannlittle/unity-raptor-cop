@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -11,8 +12,14 @@ public class GameControl : MonoBehaviour {
 
 	public float playerscore;
 	public int numSheepInExistence;
+	public Text scoreboardText;
+	public Text sheepExistText;
+	void Update(){
+		QuerySheepRemaining ();
+		UpdateScoreUI ();
+		UpdateSheepExistUI ();
 
-
+	}
 	// Use this for initialization
 	void Awake () {
 		if (control == null) {
@@ -22,14 +29,8 @@ public class GameControl : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-	
-	// Update is called once per frame
-	void OnGUI () {
-		GUI.Label (new Rect (10, 10, 100, 30), "Score: " + playerscore);
-		GUI.Label (new Rect (10, 10, 150, 30), "Score: " + numSheepInExistence);
-	}
 
-	public void SaveOptions(){
+	public void SaveGameData(){
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (Application.persistentDataPath + "/savegame.dat");
 
@@ -40,7 +41,7 @@ public class GameControl : MonoBehaviour {
 		bf.Serialize (file, optionsData);
 		file.Close ();
 	}
-	public void LoadOptions(){
+	public void LoadGameData(){
 		if(File.Exists(Application.persistentDataPath + "/savegame.dat")){
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (Application.persistentDataPath + "/savegame.dat", FileMode.Open);			
@@ -50,6 +51,25 @@ public class GameControl : MonoBehaviour {
 			playerscore = data.score;
 			numSheepInExistence = data.numExistingSheep;
 		}
+	}
+	public void AddScore(float addvalue){
+		playerscore += addvalue;
+		UpdateScoreUI ();
+	}
+	public void UpdateScoreUI(){
+		scoreboardText.text = "Score: " + playerscore;
+	}
+	public void AddSheep(int addvalue){
+		numSheepInExistence += addvalue;
+		UpdateSheepExistUI ();
+	}
+	public void UpdateSheepExistUI(){
+		sheepExistText.text = "Sheep Remaining: " + numSheepInExistence;
+	}
+	public void QuerySheepRemaining(){
+		GameObject[] listOfSheepRemaining = GameObject.FindGameObjectsWithTag ("Sheep");
+		numSheepInExistence = listOfSheepRemaining.Length;
+
 	}
 }
 

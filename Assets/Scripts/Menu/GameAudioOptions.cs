@@ -31,7 +31,7 @@ public class GameAudioOptions : MonoBehaviour {
 	
 	// Update is called once per frame
 	void OnGUI () {
-		GUI.Label (new Rect (10, 10, 100, 30), "Health: " + masterVolumeEnabled);
+		//GUI.Label (new Rect (10, 10, 100, 30), "Health: " + masterVolumeEnabled);
 	}
 
 	public void SaveAudioOptions(){
