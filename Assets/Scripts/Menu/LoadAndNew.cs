@@ -29,7 +29,7 @@ public class LoadAndNew : MonoBehaviour {
 
 	public void NewGame(){
 		GlobalLoad = null;
-		SceneManager.LoadScene ("Playground");
+		SceneManager.LoadScene ("DavidsPlayground");
 	}
 
 	public void LoadGame(){

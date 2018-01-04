@@ -19,7 +19,11 @@ public class Player : MonoBehaviour {
 	void OnCollisionStay() {
 		isGrounded = true;
 	}
-		
+	void OnCollisionEnter(Collision col){
+		if(col.gameObject.CompareTag("Sheep")){
+			col.gameObject.GetComponent<StateCartridgeController> ().Die();
+		}
+	}	
 	void FixedUpdate () {
 		// Forward/backward
 		rb.MovePosition (transform.position + transform.forward * inputManager.CurrentForward * Time.deltaTime * speed);

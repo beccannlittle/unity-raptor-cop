@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
 
@@ -19,6 +20,9 @@ public class GameControl : MonoBehaviour {
 		UpdateScoreUI ();
 		UpdateSheepExistUI ();
 
+		if (hasWonGame ()) {
+			this.EndGame ();
+		}
 	}
 	// Use this for initialization
 	void Awake () {
@@ -29,7 +33,13 @@ public class GameControl : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
-
+	private bool hasWonGame(){
+		return (numSheepInExistence <= 0);
+	}
+	private void EndGame(){
+		Debug.Log ("You won the game!");
+		SceneManager.LoadScene ("Credits");
+	}
 	public void SaveGameData(){
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (Application.persistentDataPath + "/savegame.dat");

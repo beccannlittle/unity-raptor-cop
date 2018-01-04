@@ -9,5 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Mainmenu/TitleScreen.unity
     guid: ce4ce9e59a1004f47b987ef1e009f2cb
   - enabled: 1
-    path: Assets/Scenes/Playground/Playground.unity
+    path: Assets/Scenes/Playground/DavidsPlayground.unity
     guid: 2863eac849f80304c85f9894ef69366c
+  - enabled: 1
+    path: Assets/Scenes/Mainmenu/Credits.unity
+    guid: a7b070ea53ccd9242980474a398ead86

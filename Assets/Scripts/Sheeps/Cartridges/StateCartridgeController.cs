@@ -42,4 +42,9 @@ public class StateCartridgeController : MonoBehaviour {
 			currentCartridge.Run (gameObject);
 		}
 	}
+	public void Die(){
+		this.state = State.Dead;
+		GameObject.Find ("GameManager").GetComponent<GameControl> ().AddScore (15f);
+		GameObject.Find ("GameManager").GetComponent<GameControl> ().AddSheep(-1);
+	}
 }
