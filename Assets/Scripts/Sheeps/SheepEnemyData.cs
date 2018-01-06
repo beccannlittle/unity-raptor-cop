@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class SheepEnemyData : MonoBehaviour {
 	public SheepEnemy sheepType;
@@ -25,6 +28,7 @@ public class SheepEnemyData : MonoBehaviour {
 	void Start ()
 	{
 		InitializeStartingValues (sheepType);
+		//SaveData ();
 	}
 
 	void InitializeStartingValues (SheepEnemy sheepT)
@@ -54,7 +58,7 @@ public class SheepEnemyData : MonoBehaviour {
 	}
 
 	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask){
-		Vector3 randDirection = Random.insideUnitSphere * dist;
+		Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
 		randDirection += origin;
 		NavMeshHit navHit;
 		NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
@@ -98,9 +102,28 @@ public class SheepEnemyData : MonoBehaviour {
 		 health =  health + (regenAmount * Time.deltaTime);
 	}
 
-
 	public void Die ()
 	{
 		Destroy (gameObject);
 	}
+	/*
+	public void SaveData(){
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = File.OpenWrite (Application.persistentDataPath + "/savegame.data");
+
+		SheepData sheepDat = new SheepData ();
+		sheepDat.transform = this.gameObject.transform;
+		sheepDat.sheepstate = this.GetComponent<StateCartridgeController>().state;
+
+		bf.Serialize (file, sheepDat);
+		file.Close ();
+	}
+	*/
+}
+
+[Serializable]
+class SheepData {
+	public Transform transform;
+	public StateCartridgeController.State sheepstate;
+
 }

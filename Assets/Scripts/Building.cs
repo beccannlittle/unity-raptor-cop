@@ -5,16 +5,17 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-[Serializable]
-class PlayerData {
+public class Building : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+}
+
+[Serializable]
+class BuildingData {
+	public Transform transform;
+
 }

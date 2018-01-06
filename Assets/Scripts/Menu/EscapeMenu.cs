@@ -9,9 +9,10 @@ public class EscapeMenu : MonoBehaviour {
 
 	public void QuitToMenu(bool shouldSaveGame){
 		if(shouldSaveGame){
-			//gameManager.GetComponent<GameControl> ().SaveGame ();
+			gameManager.GetComponent<GameControl> ().SaveGameData ();
 		}
 		SceneManager.LoadScene ("TitleScreen");	
+		Destroy (gameManager);
 	}
 
 	public void ToggleEscapeMenuVisibility(){
