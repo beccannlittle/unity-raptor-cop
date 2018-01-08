@@ -16,6 +16,11 @@ public class Building : MonoBehaviour {
 
 [Serializable]
 class BuildingData {
-	public Transform transform;
+	public float positionX;
+	public float positionY;
+	public float positionZ;
+	public float rotationX;
+	public float rotationY;
+	public float rotationZ;
 
 }

@@ -123,7 +123,12 @@ public class SheepEnemyData : MonoBehaviour {
 
 [Serializable]
 class SheepData {
-	public Transform transform;
+	public float positionX;
+	public float positionY;
+	public float positionZ;
+	public float rotationX;
+	public float rotationY;
+	public float rotationZ;
 	public StateCartridgeController.State sheepstate;
 
 }

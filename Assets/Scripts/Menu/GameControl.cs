@@ -46,6 +46,7 @@ public class GameControl : MonoBehaviour {
 	private void EndGame(){
 		Debug.Log ("You won the game!");
 		SceneManager.LoadScene ("Credits");
+		ClearSaveData ();
 		Destroy (this.gameObject);
 	}
 	public void SaveGameData(){
@@ -58,18 +59,21 @@ public class GameControl : MonoBehaviour {
 	}
 	public void LoadGameData(){
 		if(File.Exists(Application.persistentDataPath + "/savegame.data")){
+			ClearSceneData ();
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (Application.persistentDataPath + "/savegame.data", FileMode.Open);			
 
-			LoadGameControlData ();
-
 			GameData data = (GameData)bf.Deserialize (file);
+			LoadGameControlData (data);
 			file.Close ();
-
-			playerscore = data.score;
-			numSheepInExistence = data.numExistingSheep;
-			Debug.Log ("PlayerScore: "+playerscore);
-			Debug.Log ("SheepInExistence: "+numSheepInExistence);
+		}
+	}
+	private void ClearSceneData(){
+		foreach (Transform sheep in sheepOBJHolder.transform) {
+			Destroy (sheep.gameObject);
+		}
+		foreach (Transform building in buildingOBJHolder.transform) {
+			Destroy (building.gameObject);
 		}
 	}
 	public void ClearSaveData(){
@@ -102,32 +106,52 @@ public class GameControl : MonoBehaviour {
 		GameData optionsData = new GameData ();
 		optionsData.score = playerscore;
 		optionsData.numExistingSheep = numSheepInExistence;
+
 		optionsData.playerdata = BuildPlayerData ();
 		optionsData.sheepdata = BuildSheepData ();
 		optionsData.buildingdata = BuildBuildingData ();
 
 		bff.Serialize (file, optionsData);
 	}
-	public void LoadGameControlData(){
+	private void LoadGameControlData(GameData gdata){
+
+		LoadSavedPlayer (gdata.playerdata);
+		LoadSavedSheepData (gdata.sheepdata);
+		LoadSavedBuildingData (gdata.buildingdata);
+
+		playerscore = gdata.score;
+		numSheepInExistence = gdata.numExistingSheep;
+		Debug.Log ("PlayerScore: "+playerscore);
+		Debug.Log ("SheepInExistence: "+numSheepInExistence);
 	}
 	private PlayerData BuildPlayerData(){
 		PlayerData pd = new PlayerData ();
-		pd.transform = playerOBJ.transform;
+		pd.positionX = playerOBJ.transform.position.x;
+		pd.positionY = playerOBJ.transform.position.y;
+		pd.positionZ = playerOBJ.transform.position.z;
+		pd.rotationX = playerOBJ.transform.rotation.x;
+		pd.rotationY = playerOBJ.transform.rotation.y;
+		pd.rotationZ = playerOBJ.transform.rotation.z;
 
 		return pd;
 	}
-	private void LoadSavedPlayer(PlayerData pdata){
-		if(pdata != null) {
-			playerOBJ.transform.position = pdata.transform.position;
-			playerOBJ.transform.rotation = pdata.transform.rotation;
+	private void LoadSavedPlayer(PlayerData pd){
+		if(pd != null) {
+			playerOBJ.transform.position =  new Vector3(pd.positionX,pd.positionY,pd.positionZ);
+			playerOBJ.transform.rotation = Quaternion.Euler(pd.rotationX,pd.rotationY,pd.rotationZ);
 		}
 	}
 	private List<SheepData> BuildSheepData(){
 		List<SheepData> sheepDataList = new List<SheepData>();
 
-		foreach(GameObject sheep in sheepOBJHolder.transform){
+		foreach(Transform sheep in sheepOBJHolder.transform){
 			SheepData sd = new SheepData ();
-			sd.transform = sheep.transform;
+			sd.positionX = sheep.transform.position.x;
+			sd.positionY = sheep.transform.position.y;
+			sd.positionZ = sheep.transform.position.z;
+			sd.rotationX = sheep.transform.rotation.x;
+			sd.rotationY = sheep.transform.rotation.y;
+			sd.rotationZ = sheep.transform.rotation.z;
 			sd.sheepstate = sheep.GetComponent<StateCartridgeController> ().state;
 
 			sheepDataList.Add (sd);
@@ -136,15 +160,22 @@ public class GameControl : MonoBehaviour {
 	}
 	private void LoadSavedSheepData(List<SheepData> sheepdatalist){
 		foreach(SheepData sd in sheepdatalist){
-			GameObject newSheep = Instantiate (sheepPrefab, sd.transform.position, sd.transform.rotation);
+			GameObject newSheep = Instantiate (sheepPrefab, new Vector3(sd.positionX,sd.positionY,sd.positionZ), Quaternion.Euler(sd.rotationX,sd.rotationY,sd.rotationZ), sheepOBJHolder.transform);
 			newSheep.GetComponent<StateCartridgeController> ().state = sd.sheepstate;
 		}
 	}
 	private List<BuildingData> BuildBuildingData(){
 		List<BuildingData> buildingDataList = new List<BuildingData> ();
-		foreach(GameObject building in buildingOBJHolder.transform){
+		foreach(Transform building in buildingOBJHolder.transform){
 			BuildingData bd = new BuildingData ();
-			bd.transform = building.transform;
+
+			bd.positionX = building.transform.position.x;
+			bd.positionY = building.transform.position.y;
+			bd.positionZ = building.transform.position.z;
+
+			bd.rotationX = building.transform.rotation.x;
+			bd.rotationY = building.transform.rotation.y;
+			bd.rotationZ = building.transform.rotation.z;
 
 			buildingDataList.Add (bd);
 		}
@@ -152,7 +183,7 @@ public class GameControl : MonoBehaviour {
 	}
 	private void LoadSavedBuildingData(List<BuildingData> buildingdatalist){
 		foreach(BuildingData bd in buildingdatalist){
-			Instantiate (buildingPrefab, bd.transform.position, bd.transform.rotation);
+			Instantiate (buildingPrefab, new Vector3(bd.positionX,bd.positionY,bd.positionZ), Quaternion.Euler(bd.rotationX,bd.rotationY,bd.rotationZ), buildingOBJHolder.transform);
 		}
 	}
 }
