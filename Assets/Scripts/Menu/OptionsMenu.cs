@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class OptionsMenu : MonoBehaviour {
 	public GameObject escapeMenuPanel;
+	public GameObject gameManager;
 
+	void Awake(){
+		gameManager.GetComponent<GameAudioOptions> ().LoadAudioOptions ();
+	}
 	public void ToggleOptionsMenuVisibility(bool shouldSaveOptions){
 		if(shouldSaveOptions){
 			SaveOptions ();
@@ -16,7 +20,7 @@ public class OptionsMenu : MonoBehaviour {
 	public void SaveOptions(){
 		Debug.Log ("[GameManager]: Saving the game");
 		//Options newoptions;
-		//gameManager.GetComponent<Options> ().SaveOptions (newoptions);
+		gameManager.GetComponent<GameAudioOptions> ().SaveAudioOptions ();
 
 	}
 	public void ToggleMuteAll(bool value){
