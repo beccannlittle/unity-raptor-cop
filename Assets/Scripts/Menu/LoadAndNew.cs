@@ -27,10 +27,14 @@ public class LoadAndNew : MonoBehaviour {
 		}
 	}
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode){
-		if (scene.name == "DavidsPlayground") {
+		Debug.Log ("in OnSceneLoaded");
+		if (scene.name == worldName) {
+			Debug.Log ("in "+worldName+" OnSceneLoaded");
 			GameObject[] rootObjects = scene.GetRootGameObjects ();
 			foreach(GameObject gobj in rootObjects){
 				if(gobj.name == "GameManager"){
+					//TODO: This is currently not being called. Its probably because its in a different DontDestroyOnLoad scene thingy
+					Debug.Log ("OnSceneLoad LoadGameData");
 					gobj.GetComponent<GameControl> ().LoadGameData ();
 					break;
 				}
