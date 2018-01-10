@@ -15,28 +15,20 @@ public class LoadAndNew : MonoBehaviour {
 
 
 	public void NewGame(){
+		if (File.Exists (Application.persistentDataPath + fileName)) {
+			File.Delete (Application.persistentDataPath + fileName);
+		}
 		SceneManager.LoadScene (worldName);
 	}
 
 	public void LoadGame(){
-		if (File.Exists(Application.persistentDataPath + "/savegame.data")) {
-			SceneManager.sceneLoaded += OnSceneLoaded;
+		if (File.Exists(Application.persistentDataPath + fileName)) {
 			SceneManager.LoadScene (worldName);
 		} else {
 			LoadError.SetActive (true);
 		}
 	}
-	void OnSceneLoaded(Scene scene, LoadSceneMode mode){
-		if (scene.name == "DavidsPlayground") {
-			GameObject[] rootObjects = scene.GetRootGameObjects ();
-			foreach(GameObject gobj in rootObjects){
-				if(gobj.name == "GameManager"){
-					gobj.GetComponent<GameControl> ().LoadGameData ();
-					break;
-				}
-			}
-		}
-	}
+
 	public void LoadMainMenu(){
 		SceneManager.LoadScene (titleSceneName);
 	}

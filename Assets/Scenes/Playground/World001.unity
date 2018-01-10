@@ -2508,11 +2508,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4779204796279740, guid: 5555a71b39b595442844cf21246cbbad, type: 2}
       propertyPath: m_LocalScale.x
-      value: 5.7928567
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4779204796279740, guid: 5555a71b39b595442844cf21246cbbad, type: 2}
       propertyPath: m_LocalScale.z
-      value: 9.902533
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4779204796279740, guid: 5555a71b39b595442844cf21246cbbad, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
