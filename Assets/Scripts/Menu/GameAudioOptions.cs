@@ -36,7 +36,7 @@ public class GameAudioOptions : MonoBehaviour {
 
 	public void SaveAudioOptions(){
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (GameConstants.Resource_SaveOptionsPath);
+		FileStream file = File.Create (GameConstants.RESOURCE_SAVEOPTIONS_PATH);
 
 		GameAudioOptionsData optionsData = new GameAudioOptionsData ();
 		optionsData.masterVolumeEnabled = masterVolumeEnabled;
@@ -53,9 +53,9 @@ public class GameAudioOptions : MonoBehaviour {
 	}
 
 	public void LoadAudioOptions(){
-		if(File.Exists(GameConstants.Resource_SaveOptionsPath)){
+		if(File.Exists(GameConstants.RESOURCE_SAVEOPTIONS_PATH)){
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (GameConstants.Resource_SaveOptionsPath, FileMode.Open);			
+			FileStream file = File.Open (GameConstants.RESOURCE_SAVEOPTIONS_PATH, FileMode.Open);			
 			GameAudioOptionsData data = (GameAudioOptionsData)bf.Deserialize (file);
 			file.Close ();
 

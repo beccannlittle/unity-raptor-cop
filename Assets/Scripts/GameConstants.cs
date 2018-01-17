@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class GameConstants {
 	//Scenes
-	private static string Scene_TitleMenu_val = "TitleScreen";
-	private static string Scene_World_val = "DavidsPlayground";
-	private static string Scene_Credits_val = "Credits";
+	private static string SCENE_TITLEMENU_VAL = "TitleScreen";
+	private static string SCENE_WORLD_VAL = "DavidsPlayground";
+	private static string SCENE_CREDITS_VAL = "Credits";
 
 	//Game Resources
-	private static string Resource_SaveGamePath_val = ""+ Application.persistentDataPath + "savegame.data";
-	private static string Resource_SaveOptionsPath_val = ""+ Application.persistentDataPath + "gameAudioOptions.dat";
-	private static string Resource_ScorePrefix_val = "Score: ";
-	private static string Resource_SheepExistPrefix_val = "Sheep Remaining: ";
+	private static string RESOURCE_SAVEGAME_PATH_VAL = ""+ Application.persistentDataPath + "savegame.data";
+	private static string RESOURCE_SAVEOPTIONS_PATH_VAL = ""+ Application.persistentDataPath + "gameAudioOptions.dat";
+	private static string RESOURCE_SCOREPREFIX_VAL = "Score: ";
+	private static string RESOURCE_SHEEPEXISTPREFIX_VAL = "Sheep Remaining: ";
 
 	//GameTags
-	private static string Tag_Sheep_val = "Sheep";
+	private static string TAG_SHEEP_VAL = "Sheep";
 
 	//Getters
-	public static string Scene_TitleMenu { get { return Scene_TitleMenu_val; } }
-	public static string Scene_World { get { return Scene_World_val; } }
-	public static string Scene_Credits { get { return Scene_Credits_val; } }
-	public static string Resource_SaveGamePath { get { return Resource_SaveGamePath_val; } }
-	public static string Resource_SaveOptionsPath { get { return Resource_SaveOptionsPath_val; } }
-	public static string Resource_ScorePrefix { get { return Resource_ScorePrefix_val; } }
-	public static string Resource_SheepExistPrefix { get { return Resource_SheepExistPrefix_val; } }
-	public static string Tag_Sheep { get { return Tag_Sheep_val; } }
+	public static string SCENE_TITLEMENU { get { return SCENE_TITLEMENU_VAL; } }
+	public static string SCENE_WORLD { get { return SCENE_WORLD_VAL; } }
+	public static string SCENE_CREDITS { get { return SCENE_CREDITS_VAL; } }
+	public static string RESOURCE_SAVEGAME_PATH { get { return RESOURCE_SAVEGAME_PATH_VAL; } }
+	public static string RESOURCE_SAVEOPTIONS_PATH { get { return RESOURCE_SAVEOPTIONS_PATH_VAL; } }
+	public static string RESOURCE_SCOREPREFIX { get { return RESOURCE_SCOREPREFIX_VAL; } }
+	public static string RESOURCE_SHEEPEXISTPREFIX { get { return RESOURCE_SHEEPEXISTPREFIX_VAL; } }
+	public static string TAG_SHEEP { get { return TAG_SHEEP_VAL; } }
 
 }

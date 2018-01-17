@@ -12,22 +12,22 @@ public class LoadAndNew : MonoBehaviour {
 
 
 	public void NewGame(){
-		if (File.Exists (GameConstants.Resource_SaveGamePath)) {
-			File.Delete (GameConstants.Resource_SaveGamePath);
+		if (File.Exists (GameConstants.RESOURCE_SAVEGAME_PATH)) {
+			File.Delete (GameConstants.RESOURCE_SAVEGAME_PATH);
 		}
-		SceneManager.LoadScene (GameConstants.Scene_World);
+		SceneManager.LoadScene (GameConstants.SCENE_WORLD);
 	}
 
 	public void LoadGame(){
-		if (File.Exists(GameConstants.Resource_SaveGamePath)) {
-			SceneManager.LoadScene (GameConstants.Scene_World);
+		if (File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)) {
+			SceneManager.LoadScene (GameConstants.SCENE_WORLD);
 		} else {
 			LoadError.SetActive (true);
 		}
 	}
 
 	public void LoadMainMenu(){
-		SceneManager.LoadScene (GameConstants.Scene_TitleMenu);
+		SceneManager.LoadScene (GameConstants.SCENE_TITLEMENU);
 	}
 
 	public void QuitGame(){

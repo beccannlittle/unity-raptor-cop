@@ -45,23 +45,23 @@ public class GameControl : MonoBehaviour {
 	}
 	private void EndGame(){
 		Debug.Log ("You won the game!");
-		SceneManager.LoadScene (GameConstants.Scene_Credits);
+		SceneManager.LoadScene (GameConstants.SCENE_CREDITS);
 		ClearSaveData ();
 		Destroy (this.gameObject);
 	}
 	public void SaveGameData(){
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (GameConstants.Resource_SaveGamePath);
+		FileStream file = File.Create (GameConstants.RESOURCE_SAVEGAME_PATH);
 
 		SaveGameControlData (bf, file);
 
 		file.Close ();
 	}
 	public void LoadGameData(){
-		if(File.Exists(GameConstants.Resource_SaveGamePath)){
+		if(File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)){
 			ClearSceneData ();
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (GameConstants.Resource_SaveGamePath, FileMode.Open);			
+			FileStream file = File.Open (GameConstants.RESOURCE_SAVEGAME_PATH, FileMode.Open);			
 
 			GameData data = (GameData)bf.Deserialize (file);
 			LoadGameControlData (data);
@@ -77,8 +77,8 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 	public void ClearSaveData(){
-		if(File.Exists(GameConstants.Resource_SaveGamePath)){
-			File.Delete (GameConstants.Resource_SaveGamePath);
+		if(File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)){
+			File.Delete (GameConstants.RESOURCE_SAVEGAME_PATH);
 		}
 	}
 	public void AddScore(float addvalue){
@@ -87,7 +87,7 @@ public class GameControl : MonoBehaviour {
 	}
 	public void UpdateScoreUI(){
 		if (scoreboardText != null) {
-			scoreboardText.text = GameConstants.Resource_ScorePrefix + playerscore;
+			scoreboardText.text = GameConstants.RESOURCE_SCOREPREFIX + playerscore;
 		}
 	}
 	public void AddSheep(int addvalue){
@@ -95,10 +95,10 @@ public class GameControl : MonoBehaviour {
 		UpdateSheepExistUI ();
 	}
 	public void UpdateSheepExistUI(){
-		sheepExistText.text = GameConstants.Resource_SheepExistPrefix + numSheepInExistence;
+		sheepExistText.text = GameConstants.RESOURCE_SHEEPEXISTPREFIX + numSheepInExistence;
 	}
 	public void QuerySheepRemaining(){
-		GameObject[] listOfSheepRemaining = GameObject.FindGameObjectsWithTag (GameConstants.Tag_Sheep);
+		GameObject[] listOfSheepRemaining = GameObject.FindGameObjectsWithTag (GameConstants.TAG_SHEEP);
 		numSheepInExistence = listOfSheepRemaining.Length;
 	}
 	public void SaveGameControlData(BinaryFormatter bff, FileStream file){
@@ -121,8 +121,8 @@ public class GameControl : MonoBehaviour {
 
 		playerscore = gdata.score;
 		numSheepInExistence = gdata.numExistingSheep;
-		Debug.Log (GameConstants.Resource_ScorePrefix + playerscore);
-		Debug.Log (GameConstants.Resource_SheepExistPrefix + numSheepInExistence);
+		Debug.Log (GameConstants.RESOURCE_SCOREPREFIX + playerscore);
+		Debug.Log (GameConstants.RESOURCE_SHEEPEXISTPREFIX + numSheepInExistence);
 	}
 	private PlayerData BuildPlayerData(){
 		PlayerData pd = new PlayerData ();
