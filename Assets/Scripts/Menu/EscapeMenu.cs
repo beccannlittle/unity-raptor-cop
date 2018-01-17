@@ -12,7 +12,7 @@ public class EscapeMenu : MonoBehaviour {
 			gameManager.GetComponent<GameControl> ().ClearSaveData ();
 			gameManager.GetComponent<GameControl> ().SaveGameData ();
 		}
-		SceneManager.LoadScene ("TitleScreen");	
+		SceneManager.LoadScene (GameConstants.Scene_TitleMenu);	
 		Destroy (gameManager);
 	}
 
