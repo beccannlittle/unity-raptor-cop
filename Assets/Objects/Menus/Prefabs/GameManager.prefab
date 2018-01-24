@@ -56,7 +56,7 @@ MonoBehaviour:
   numSheepInExistence: 5
   scoreboardText: {fileID: 0}
   sheepExistText: {fileID: 0}
-  sheepPrefab: {fileID: 1931969463074336, guid: 5555a71b39b595442844cf21246cbbad,
+  sheepPrefab: {fileID: 1183233802307334, guid: 57b4d44a3feed4a828ef15a5bb7d22ff,
     type: 2}
   buildingPrefab: {fileID: 1621779630937630, guid: d587602747198e147b1c6fcee0866383,
     type: 2}

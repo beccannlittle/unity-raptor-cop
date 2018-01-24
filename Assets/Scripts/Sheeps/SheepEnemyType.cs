@@ -20,7 +20,7 @@ public class SheepEnemyType : ScriptableObject
 
 	public float moveSpeed = 10.0f;
 	public float wanderDistance = 35.0f;
-	public float rotationSpeed = 5.0f;
+	public float rotationSpeed = 100.0f;
 	public float angleOfSight = 25.0f;
 
 	public float getStartingHealth (){return healthStarting;}

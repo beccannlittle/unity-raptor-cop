@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26418f60ef80c1e4f961a5da3db535ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sheepType: {fileID: 11400000, guid: bd2e115e420022544848e525ef9b6bf4, type: 2}
+  sheepType: {fileID: 11400000, guid: 8c0735f8fa3f04a1d9e5950b0041dec7, type: 2}
   hunger: 0
   health: 0
   hungerDecayRateAmount: 0

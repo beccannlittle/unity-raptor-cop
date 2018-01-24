@@ -22,5 +22,5 @@ MonoBehaviour:
   petrifiedDistance: 30
   moveSpeed: 10
   wanderDistance: 35
-  rotationSpeed: 5
+  rotationSpeed: 100
   angleOfSight: 25
