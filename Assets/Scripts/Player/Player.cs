@@ -23,7 +23,7 @@ public class Player : MonoBehaviour {
 		isGrounded = true;
 	}
 	void OnCollisionEnter(Collision col){
-		if(col.gameObject.CompareTag("Sheep")){
+		if(col.gameObject.CompareTag(GameConstants.TAG_SHEEP)){
 			col.gameObject.GetComponent<StateCartridgeController> ().Die();
 		}
 	}	

@@ -106,19 +106,6 @@ public class SheepEnemyData : MonoBehaviour {
 	{
 		Destroy (gameObject);
 	}
-	/*
-	public void SaveData(){
-		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.OpenWrite (Application.persistentDataPath + "/savegame.data");
-
-		SheepData sheepDat = new SheepData ();
-		sheepDat.transform = this.gameObject.transform;
-		sheepDat.sheepstate = this.GetComponent<StateCartridgeController>().state;
-
-		bf.Serialize (file, sheepDat);
-		file.Close ();
-	}
-	*/
 }
 
 [Serializable]

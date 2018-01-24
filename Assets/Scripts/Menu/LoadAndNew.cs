@@ -6,31 +6,28 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LoadAndNew : MonoBehaviour {
-	public string fileName = "savegame.data";
-	private string worldName = "DavidsPlayground";
-	private string titleSceneName = "TitleScreen";
 	public string loadCode;
 	public static string GlobalLoad;
 	public GameObject LoadError;
 
 
 	public void NewGame(){
-		if (File.Exists (Application.persistentDataPath + fileName)) {
-			File.Delete (Application.persistentDataPath + fileName);
+		if (File.Exists (GameConstants.RESOURCE_SAVEGAME_PATH)) {
+			File.Delete (GameConstants.RESOURCE_SAVEGAME_PATH);
 		}
-		SceneManager.LoadScene (worldName);
+		SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
 	}
 
 	public void LoadGame(){
-		if (File.Exists(Application.persistentDataPath + fileName)) {
-			SceneManager.LoadScene (worldName);
+		if (File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)) {
+			SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
 		} else {
 			LoadError.SetActive (true);
 		}
 	}
 
 	public void LoadMainMenu(){
-		SceneManager.LoadScene (titleSceneName);
+		SceneManager.LoadScene (GameConstants.SCENE_TITLEMENU);
 	}
 
 	public void QuitGame(){
