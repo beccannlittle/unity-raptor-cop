@@ -1,52 +1,121 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
-[CreateAssetMenu (fileName = "New Sheep", menuName = "Enemies/Sheep")]
-public class SheepEnemy : ScriptableObject
-{
-	public float healthStarting = 15.0f;
-	public float healthMax = 15.0f;
+public class SheepEnemy : MonoBehaviour {
+	public SheepEnemyType sheepType;
 
-	public float hungerStarting = 50.0f;
-	public float hungerMin = 30.0f;
-	public float hungerMax = 100.0f;
-	public float hungerDecayAmount = 10.0f;
-	public float hungerDecayInterval = 3.0f;
+	public float hunger;
+	public float health;
 
-	public float startledDistance = 50.0f;
+	public float hungerDecayRateAmount;
+	public float hungerDecayRateTime;
 
-	public float petrifiedDistance = 30.0f;
+	public float startledDistance;
 
-	public float moveSpeed = 10.0f;
-	public float wanderDistance = 35.0f;
-	public float rotationSpeed = 5.0f;
-	public float angleOfSight = 25.0f;
+	public float petrifiedDistance;
 
-	public float getStartingHealth (){return healthStarting;}
+	public float angleOfSight;
 
-	public float getMaxHealth (){return healthMax;}
+	//Wandering Vars
+	public float wanderDistance;
+	private NavMeshAgent navAgent;
 
-	public float getStartingHunger (){return hungerStarting;}
+	void Start ()
+	{
+		InitializeStartingValues (sheepType);
+		//SaveData ();
+	}
 
-	public float getHungerDecayRateAmount (){return hungerDecayAmount;}
+	void InitializeStartingValues (SheepEnemyType sheepT)
+	{
+		hunger = sheepT.getStartingHunger ();
+		health = sheepT.getStartingHealth ();
 
-	public float getHungerDecayRateTime (){return hungerDecayInterval;}
+		hungerDecayRateAmount = sheepT.getHungerDecayRateAmount ();
+		hungerDecayRateTime = sheepT.getHungerDecayRateTime ();
 
-	public float getMinHunger (){return hungerMin;}
+		startledDistance = sheepT.getStartledDistance ();
+		petrifiedDistance = sheepT.getPetrifiedDistance ();
 
-	public float getMaxHunger (){return hungerMax;}
+		angleOfSight = sheepT.getAngleOfSight ();
+		wanderDistance = sheepT.getWanderDistance ();
 
-	public float getStartledDistance (){return startledDistance;}
+		navAgent = gameObject.GetComponent<NavMeshAgent> ();
+		navAgent.speed = sheepT.getMoveSpeed ();
+		navAgent.angularSpeed = sheepT.getRotationSpeed ();
+	}
 
-	public float getPetrifiedDistance (){return petrifiedDistance;}
+	public void Wander(){
+		if(navAgent.remainingDistance <= 5.0f){
+			Vector3 newPos = RandomNavSphere (transform.position, wanderDistance, -1);
+			navAgent.SetDestination (newPos);
+		}
+	}
 
-	public float getMoveSpeed (){return moveSpeed;}
+	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask){
+		Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
+		randDirection += origin;
+		NavMeshHit navHit;
+		NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
+		return navHit.position;
+	}
 
-	public float getWanderDistance (){return wanderDistance;}
+	public void TurnTo (Transform target)
+	{
+		Vector3 _direction = (target.position - transform.position).normalized;
+		Quaternion _lookRotation = Quaternion.LookRotation (_direction);
+		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime *  navAgent.angularSpeed);
+	}
 
-	public float getRotationSpeed (){return rotationSpeed;}
+	public bool CanSeeTarget (GameObject target)
+	{
+		Vector3 targetDirection = target.transform.position - transform.position;
+		float angleToTarget = Vector3.Angle (targetDirection, transform.forward);
+		if (angleToTarget <=  angleOfSight) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public void TickHunger (bool upDown)
+	{
+		//increment=false decrement=true
+		if (upDown) {
+			hunger =  hunger - ( hungerDecayRateAmount * Time.deltaTime);
+		} else {
+			hunger =  hunger + ( hungerDecayRateAmount * Time.deltaTime);
+		}
+	}
 
-	public float getAngleOfSight (){return angleOfSight;}
+	public void TakeDamage (float damage)
+	{
+		 health =  health - (damage * Time.deltaTime);
+	}
+
+	public void Heal (float regenAmount)
+	{
+		 health =  health + (regenAmount * Time.deltaTime);
+	}
+
+	public void Die ()
+	{
+		Destroy (gameObject);
+	}
+}
+
+[Serializable]
+class SheepData {
+	public float positionX;
+	public float positionY;
+	public float positionZ;
+	public float rotationX;
+	public float rotationY;
+	public float rotationZ;
+	public StateCartridgeController.State sheepstate;
 
 }
