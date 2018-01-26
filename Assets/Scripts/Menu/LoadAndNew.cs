@@ -15,12 +15,12 @@ public class LoadAndNew : MonoBehaviour {
 		if (File.Exists (GameConstants.RESOURCE_SAVEGAME_PATH)) {
 			File.Delete (GameConstants.RESOURCE_SAVEGAME_PATH);
 		}
-		SceneManager.LoadScene (GameConstants.SCENE_WORLD);
+		SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
 	}
 
 	public void LoadGame(){
 		if (File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)) {
-			SceneManager.LoadScene (GameConstants.SCENE_WORLD);
+			SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
 		} else {
 			LoadError.SetActive (true);
 		}
