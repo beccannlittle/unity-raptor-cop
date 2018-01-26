@@ -6,7 +6,7 @@ public class Cartridge_Idle : IStateCartridge {
 
 	// Use this for initialization
 	public void Run (GameObject gobject) {
-		gobject.GetComponent<SheepEnemyData> ().Wander ();
+		gobject.GetComponent<SheepEnemy> ().Wander ();
 	}
 
 }
