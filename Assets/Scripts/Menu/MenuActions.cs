@@ -51,12 +51,8 @@ public class MenuActions : MonoBehaviour {
 	}
 
 	public void ToggleOptionsMenu() {
-		Debug.Log(escapeMenu.activeSelf);
 		escapeMenu.SetActive (!escapeMenu.activeSelf);
-		Debug.Log(escapeMenu.activeSelf);
-		Debug.Log(optionsMenu.activeSelf);
 		optionsMenu.SetActive (!optionsMenu.activeSelf);
-		Debug.Log(optionsMenu.activeSelf);
 	}
 
 //	public void SaveOptions(){
