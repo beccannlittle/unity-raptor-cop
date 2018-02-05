@@ -3734,7 +3734,6 @@ GameObject:
   - component: {fileID: 1219886072}
   - component: {fileID: 1219886077}
   - component: {fileID: 1219886076}
-  - component: {fileID: 1219886078}
   m_Layer: 0
   m_Name: Cam001
   m_TagString: Untagged
@@ -3863,21 +3862,6 @@ PlayableDirector:
     value: {fileID: 548831984}
   m_ExposedReferences:
     m_References: []
---- !u!114 &1219886078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1219886070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d4311ddb8f1b0341a250eb24edc5ed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  artists: {fileID: 548831984}
-  designers: {fileID: 1835993047}
-  developers: {fileID: 1768867510}
-  winUI: {fileID: 594066590}
 --- !u!1 &1227463413
 GameObject:
   m_ObjectHideFlags: 0
