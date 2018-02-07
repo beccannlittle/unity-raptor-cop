@@ -6,10 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TitleMenuActions : MonoBehaviour {
-	
-	public string loadCode;
-	public static string GlobalLoad;
-	public GameObject LoadError;
+
+	public GameObject loadError;
+	public GameObject optionsMenuGraphics;
 
 	public void NewGame(){
 		if (File.Exists (GameConstants.RESOURCE_SAVEGAME_PATH)) {
@@ -24,7 +23,7 @@ public class TitleMenuActions : MonoBehaviour {
 			SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
 		} else {
 			if (!isLoadError) {
-				Instantiate (LoadError, gameObject.transform);
+				Instantiate (loadError, gameObject.transform);
 				isLoadError = true;
 			}
 		}
@@ -32,5 +31,9 @@ public class TitleMenuActions : MonoBehaviour {
 
 	public void QuitGame(){
 		Application.Quit ();
+	}
+
+	public void OpenOptionsMenu() {
+		optionsMenuGraphics.SetActive (true);
 	}
 }
