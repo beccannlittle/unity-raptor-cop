@@ -5,11 +5,11 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LoadAndNew : MonoBehaviour {
+public class TitleMenuActions : MonoBehaviour {
+	
 	public string loadCode;
 	public static string GlobalLoad;
 	public GameObject LoadError;
-
 
 	public void NewGame(){
 		if (File.Exists (GameConstants.RESOURCE_SAVEGAME_PATH)) {
@@ -18,16 +18,16 @@ public class LoadAndNew : MonoBehaviour {
 		SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
 	}
 
+	private bool isLoadError;
 	public void LoadGame(){
 		if (File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)) {
 			SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
 		} else {
-			LoadError.SetActive (true);
+			if (!isLoadError) {
+				Instantiate (LoadError, gameObject.transform);
+				isLoadError = true;
+			}
 		}
-	}
-
-	public void LoadMainMenu(){
-		SceneManager.LoadScene (GameConstants.SCENE_TITLEMENU);
 	}
 
 	public void QuitGame(){
