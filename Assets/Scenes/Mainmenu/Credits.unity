@@ -3160,7 +3160,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1526312, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: maxEnergy
-      value: 60
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 495600, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3176,15 +3176,15 @@ Prefab:
       objectReference: {fileID: 2100000, guid: d6cd5e2ff08d3a94a874d9097bc0b971, type: 2}
     - target: {fileID: 1526312, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: minEmission
-      value: 3000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1526312, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: maxEmission
-      value: 50000
+      value: 9000
       objectReference: {fileID: 0}
     - target: {fileID: 1526312, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: tangentVelocity.x
-      value: 0.18
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1526312, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: tangentVelocity.y
@@ -3192,7 +3192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1526312, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: rndAngularVelocity
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1526312, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: rndRotation
@@ -3221,6 +3221,46 @@ Prefab:
     - target: {fileID: 495600, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276540, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: colorAnimation[0].rgba
+      value: 4294939975
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276540, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: colorAnimation[1].rgba
+      value: 3539967547
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276540, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: colorAnimation[2].rgba
+      value: 2030020951
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276540, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: colorAnimation[3].rgba
+      value: 1023387471
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276540, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: colorAnimation[4].rgba
+      value: 16765869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526312, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: m_Emit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651606, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651606, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651606, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2651606, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
+      propertyPath: m_StretchParticles
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63fbbde8f18f20848967ed78bf094ef8, type: 2}
@@ -5813,8 +5853,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713251667}
-  m_LocalRotation: {x: 0.09258031, y: 0.9361697, z: 0.058872722, w: 0.33398995}
-  m_LocalPosition: {x: 293.19632, y: 110.71793, z: 196.11293}
+  m_LocalRotation: {x: -0.1340416, y: 0.680477, z: 0.1286828, w: 0.70881915}
+  m_LocalPosition: {x: 413.10492, y: 43.88153, z: 241.29245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6422,8 +6462,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1836047369}
-  m_LocalRotation: {x: -0.15140998, y: 0.7066085, z: 0.15905029, w: 0.6726683}
-  m_LocalPosition: {x: -51582.664, y: -24260.201, z: 2540.1514}
+  m_LocalRotation: {x: -0.15140995, y: 0.70660853, z: 0.1590503, w: 0.6726682}
+  m_LocalPosition: {x: 198.38617, y: 20.649979, z: 372.3114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6985,7 +7025,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967279
+    m_Bits: 0
   m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -7003,8 +7043,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2031306010}
-  m_LocalRotation: {x: -0.01707583, y: 0.6277692, z: 0.015458715, w: 0.7780587}
-  m_LocalPosition: {x: 370.32248, y: 146.23766, z: 218.5105}
+  m_LocalRotation: {x: -0.06555856, y: 0.7117643, z: 0.067031525, w: 0.6961326}
+  m_LocalPosition: {x: 428.47467, y: 141.51353, z: 239.40028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
