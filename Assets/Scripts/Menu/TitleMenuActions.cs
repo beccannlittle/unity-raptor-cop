@@ -10,12 +10,12 @@ public class TitleMenuActions : MonoBehaviour {
 	public GameObject loadError;
 	public GameObject optionsMenuGraphics;
 
-	private GameObject gameController;
+	private GameObject levelController;
 	private UIManager uiManager;
 
 	void Awake() {
-		gameController = GameObject.FindGameObjectWithTag ("GameController");
-		uiManager = gameController.GetComponent<UIManager> ();
+		levelController = GameObject.FindGameObjectWithTag ("LevelController");
+		uiManager = levelController.GetComponent<UIManager> ();
 	}
 
 	public void NewGame(){

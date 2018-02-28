@@ -266,9 +266,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114604629358583052, guid: e44de4b56442a4ff99c9722460487342,
+    - target: {fileID: 114731415484836570, guid: e44de4b56442a4ff99c9722460487342,
         type: 2}
-      propertyPath: mainMusic
+      propertyPath: uiToOpenOnEsc
+      value: 
+      objectReference: {fileID: 473578}
+    - target: {fileID: 82586142602298384, guid: e44de4b56442a4ff99c9722460487342,
+        type: 2}
+      propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 78c1e7079ea384a2e91623f7b47e5f3e, type: 3}
     m_RemovedComponents: []

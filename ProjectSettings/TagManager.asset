@@ -8,6 +8,7 @@ TagManager:
   - Building
   - Music
   - SFX
+  - LevelController
   layers:
   - Default
   - TransparentFX

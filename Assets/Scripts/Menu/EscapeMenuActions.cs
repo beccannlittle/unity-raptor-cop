@@ -9,13 +9,12 @@ public class EscapeMenuActions : MonoBehaviour {
 	public GameObject escapeMenuGraphics;
 	public GameObject optionsMenuGraphics;
 
-	private GameObject gameController;
+	private GameObject levelController;
 	private UIManager uiManager;
 
 	void Awake() {
-		gameController = GameObject.FindGameObjectWithTag ("GameController");
-		uiManager = gameController.GetComponent<UIManager> ();
-		uiManager.setUIToOpenOnEsc (escapeMenuGraphics);
+		levelController = GameObject.FindGameObjectWithTag ("LevelController");
+		uiManager = levelController.GetComponent<UIManager> ();
 	}
 
 	private void Pause() {

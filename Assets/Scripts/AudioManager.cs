@@ -14,11 +14,6 @@ public class AudioManager : MonoBehaviour {
 		musicAudioSource = gameObject.GetComponent<AudioSource> ();
 	}
 
-	public void SetMusic(AudioClip newMusic) {
-		musicAudioSource.clip = newMusic;
-		musicAudioSource.Play ();
-	}
-
 	public void MuteMusicVolume(bool value){
 		musicAudioSource.mute = value;
 	}

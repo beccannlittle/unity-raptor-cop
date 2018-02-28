@@ -6,20 +6,19 @@ public class OptionsMenuActions : MonoBehaviour {
 	
 	public GameObject optionsMenuGraphics;
 
-	private GameObject gameController;
+	private GameObject levelController;
 	private UIManager uiManager;
 
 	void Awake() {
-		gameController = GameObject.FindGameObjectWithTag ("GameController");
-		uiManager = gameController.GetComponent<UIManager> ();
+		levelController = GameObject.FindGameObjectWithTag ("LevelController");
 	}
 
 	public void ToggleMusic(bool value) {
-		gameController.GetComponent<AudioManager> ().MuteMusicVolume (value);
+		levelController.GetComponent<AudioManager> ().MuteMusicVolume (value);
 	}
 
 	public void CloseOptionsMenu() {
-		uiManager.CloseCurrentUI ();
+		levelController.GetComponent<UIManager> ().CloseCurrentUI ();
 	}
 
 

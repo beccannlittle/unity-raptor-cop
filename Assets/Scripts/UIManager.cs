@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour {
 
-	private GameObject uiToOpenOnEsc;
-
-	public void setUIToOpenOnEsc(GameObject escUI) {
-		uiToOpenOnEsc = escUI;
-	}
+	public GameObject uiToOpenOnEsc;
 
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
