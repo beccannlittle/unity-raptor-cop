@@ -10,6 +10,14 @@ public class TitleMenuActions : MonoBehaviour {
 	public GameObject loadError;
 	public GameObject optionsMenuGraphics;
 
+	private GameObject gameController;
+	private UIManager uiManager;
+
+	void Awake() {
+		gameController = GameObject.FindGameObjectWithTag ("GameController");
+		uiManager = gameController.GetComponent<UIManager> ();
+	}
+
 	public void NewGame(){
 		if (File.Exists (GameConstants.RESOURCE_SAVEGAME_PATH)) {
 			File.Delete (GameConstants.RESOURCE_SAVEGAME_PATH);
@@ -34,6 +42,6 @@ public class TitleMenuActions : MonoBehaviour {
 	}
 
 	public void OpenOptionsMenu() {
-		optionsMenuGraphics.SetActive (true);
+		uiManager.SetCurrentUI (optionsMenuGraphics);
 	}
 }

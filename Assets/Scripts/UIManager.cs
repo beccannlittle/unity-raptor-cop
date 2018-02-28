@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour {
 
+	private GameObject uiToOpenOnEsc;
+
+	public void setUIToOpenOnEsc(GameObject escUI) {
+		uiToOpenOnEsc = escUI;
+	}
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			if (currentUI) {
 				CloseCurrentUI ();
-				hasHandledEsc = true;
-			} else {
-				hasHandledEsc = false;
+			} else if (uiToOpenOnEsc) {
+				SetCurrentUI (uiToOpenOnEsc);
 			}
 		}
 	}
-
-	// We want other UI scripts to be able to decide whether they open on Esc
-	private bool hasHandledEsc;
-	public bool getHasHandledEsc() {
-		if (hasHandledEsc) return true;
-		else return false;
-	}
-	public void setHasHandledEsc() {
-		hasHandledEsc = true;
-	}
-
+		
 	private GameObject previousUI;
 	private GameObject currentUI;
 
@@ -38,7 +33,6 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void CloseCurrentUI() {
-		hasHandledEsc = true;
 		if (previousUI) {
 			currentUI.SetActive (false);
 			currentUI = previousUI;

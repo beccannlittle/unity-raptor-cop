@@ -15,17 +15,7 @@ public class EscapeMenuActions : MonoBehaviour {
 	void Awake() {
 		gameController = GameObject.FindGameObjectWithTag ("GameController");
 		uiManager = gameController.GetComponent<UIManager> ();
-	}
-
-	private bool shouldPause;
-
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape)) {
-			if (!uiManager.getHasHandledEsc ()) {
-				Pause ();
-				uiManager.setHasHandledEsc ();
-			}
-		}
+		uiManager.setUIToOpenOnEsc (escapeMenuGraphics);
 	}
 
 	private void Pause() {

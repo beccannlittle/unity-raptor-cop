@@ -5,8 +5,6 @@ using UnityEngine;
 public class OptionsMenuActions : MonoBehaviour {
 	
 	public GameObject optionsMenuGraphics;
-	[Header("Optional")]
-	public GameObject previousMenuGraphics;
 
 	private GameObject gameController;
 	private UIManager uiManager;
