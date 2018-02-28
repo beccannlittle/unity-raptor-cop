@@ -266,6 +266,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114604629358583052, guid: e44de4b56442a4ff99c9722460487342,
+        type: 2}
+      propertyPath: mainMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 78c1e7079ea384a2e91623f7b47e5f3e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e44de4b56442a4ff99c9722460487342, type: 2}
   m_IsPrefabParent: 0
@@ -870,14 +875,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114965021285634310, guid: fc87ed6468c3741508b923aca6aa58ef,
-        type: 2}
-      propertyPath: mainMusic
-      value: 
-      objectReference: {fileID: 8300000, guid: aba66bef8fc1ea94badf05cfec998643, type: 3}
-    m_RemovedComponents:
-    - {fileID: 82653113291032288, guid: fc87ed6468c3741508b923aca6aa58ef, type: 2}
-    - {fileID: 114965021285634310, guid: fc87ed6468c3741508b923aca6aa58ef, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc87ed6468c3741508b923aca6aa58ef, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1002959783
@@ -1257,6 +1255,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1806951012 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1193940701391894, guid: fc87ed6468c3741508b923aca6aa58ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001697407}
+--- !u!114 &1806951013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1806951012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df650cbcb0c6544b988ecbc9969ee8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1832052507
 Prefab:
   m_ObjectHideFlags: 0

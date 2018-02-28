@@ -8,13 +8,14 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour {
 
-	public AudioClip mainMusic;
-
 	private AudioSource musicAudioSource;
 
 	void Awake() {
 		musicAudioSource = gameObject.GetComponent<AudioSource> ();
-		musicAudioSource.clip = mainMusic;
+	}
+
+	public void SetMusic(AudioClip newMusic) {
+		musicAudioSource.clip = newMusic;
 		musicAudioSource.Play ();
 	}
 

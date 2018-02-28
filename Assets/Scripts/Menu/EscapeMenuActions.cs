@@ -9,22 +9,31 @@ public class EscapeMenuActions : MonoBehaviour {
 	public GameObject escapeMenuGraphics;
 	public GameObject optionsMenuGraphics;
 
+	private GameObject gameController;
+	private UIManager uiManager;
+
+	void Awake() {
+		gameController = GameObject.FindGameObjectWithTag ("GameController");
+		uiManager = gameController.GetComponent<UIManager> ();
+	}
+
+	private bool shouldPause;
+
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.Escape)){
-			if (escapeMenuGraphics.activeSelf) {
-				Resume ();
-			} else {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			if (!uiManager.getHasHandledEsc ()) {
 				Pause ();
+				uiManager.setHasHandledEsc ();
 			}
 		}
 	}
 
 	private void Pause() {
-		escapeMenuGraphics.SetActive (true);
+		uiManager.SetCurrentUI (escapeMenuGraphics);
 	}
 
 	public void Resume() {
-		escapeMenuGraphics.SetActive (false);
+		uiManager.CloseCurrentUI ();
 	}
 
 	public void Save() {
@@ -44,8 +53,7 @@ public class EscapeMenuActions : MonoBehaviour {
 	}
 
 	public void OpenOptionsMenu() {
-		escapeMenuGraphics.SetActive (false);
-		optionsMenuGraphics.SetActive (true);
+		uiManager.SetCurrentUI (optionsMenuGraphics);
 	}
 
 }
