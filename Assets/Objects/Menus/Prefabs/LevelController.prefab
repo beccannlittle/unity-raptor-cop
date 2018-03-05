@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 82586142602298384}
   - component: {fileID: 114171864736053808}
   - component: {fileID: 114053087740370790}
+  - component: {fileID: 114302091401913442}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: LevelController
@@ -146,6 +147,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d71e58b4d9c443bb8b73c35bfa1310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114302091401913442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1420847224098362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c02e5ea3f1545b2a17512cdf6a36b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveGamePath: savegame.data
+  sheepPrefab: {fileID: 1183233802307334, guid: 57b4d44a3feed4a828ef15a5bb7d22ff,
+    type: 2}
+  buildingPrefab: {fileID: 1621779630937630, guid: d587602747198e147b1c6fcee0866383,
+    type: 2}
+  playerOBJ: {fileID: 0}
+  sheepOBJHolder: {fileID: 0}
+  buildingOBJHolder: {fileID: 0}
 --- !u!114 &114731415484836570
 MonoBehaviour:
   m_ObjectHideFlags: 1

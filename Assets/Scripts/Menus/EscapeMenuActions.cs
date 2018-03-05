@@ -9,15 +9,15 @@ public class EscapeMenuActions : MonoBehaviour {
 	public GameObject optionsMenuGraphics;
 
 	private ConstantsManager constantsManager;
-	private SaveManager saveManager;
 	private UIManager uiManager;
+	private SaveManager saveManager;
 
 	void Awake() {
 		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
-		saveManager = gameController.GetComponent<SaveManager> ();
 		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
 		uiManager = levelController.GetComponent<UIManager> ();
+		saveManager = levelController.GetComponent<SaveManager> ();
 	}
 
 	private void Pause() {
@@ -29,6 +29,7 @@ public class EscapeMenuActions : MonoBehaviour {
 	}
 
 	public void Save() {
+		Debug.Log (saveManager);
 		saveManager.ClearSaveData ();
 		saveManager.SaveGameData ();
 		Resume ();

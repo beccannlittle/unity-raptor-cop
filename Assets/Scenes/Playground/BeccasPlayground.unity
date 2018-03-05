@@ -271,6 +271,21 @@ Prefab:
       propertyPath: uiToOpenOnEsc
       value: 
       objectReference: {fileID: 473578}
+    - target: {fileID: 114302091401913442, guid: e44de4b56442a4ff99c9722460487342,
+        type: 2}
+      propertyPath: playerOBJ
+      value: 
+      objectReference: {fileID: 963333846}
+    - target: {fileID: 114302091401913442, guid: e44de4b56442a4ff99c9722460487342,
+        type: 2}
+      propertyPath: sheepOBJHolder
+      value: 
+      objectReference: {fileID: 1967290556}
+    - target: {fileID: 114302091401913442, guid: e44de4b56442a4ff99c9722460487342,
+        type: 2}
+      propertyPath: buildingOBJHolder
+      value: 
+      objectReference: {fileID: 740995728}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e44de4b56442a4ff99c9722460487342, type: 2}
   m_IsPrefabParent: 0
@@ -517,7 +532,7 @@ GameObject:
   - component: {fileID: 740995729}
   m_Layer: 0
   m_Name: BuildingList
-  m_TagString: Untagged
+  m_TagString: BuildingList
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1403,7 +1418,7 @@ GameObject:
   - component: {fileID: 1967290557}
   m_Layer: 0
   m_Name: EnemySheepList
-  m_TagString: Untagged
+  m_TagString: EnemyList
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

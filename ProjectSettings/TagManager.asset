@@ -9,6 +9,8 @@ TagManager:
   - Music
   - SFX
   - LevelController
+  - BuildingList
+  - EnemyList
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,8 @@ public class ConstantsManager : MonoBehaviour {
 	private string[] levels;
 	[SerializeField]
 	private string credits = "Credits";
+	[SerializeField]
+	private string saveGamePath = "savegame.data";
 
 	public string getTitleScreen() { return titleScreen; }
 	public string getLevel(int index) { 
@@ -23,23 +25,8 @@ public class ConstantsManager : MonoBehaviour {
 	}
 	public string getCredits() { return credits; }
 
-	private SaveManager saveManager;
-
-	void Awake () {
-		saveManager = gameObject.GetComponent<SaveManager> ();
-	}
-
-	private bool shouldLoad;
-
-	public void setShouldLoad(bool value) {
-		shouldLoad = value;
-	}
-
-	public void setupScene() {
-		if (shouldLoad) {
-			saveManager.LoadGameData ();
-		}
-		shouldLoad = false;
+	public string getSaveGamePath() {
+		return "" + Application.persistentDataPath + saveGamePath;
 	}
 
 }

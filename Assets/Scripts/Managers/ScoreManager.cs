@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour {
 
-	public int initialSheepNum;
-
 	private ConstantsManager constantsManager;
 	private SaveManager saveManager;
 
@@ -17,9 +15,7 @@ public class ScoreManager : MonoBehaviour {
 		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
 		saveManager = gameController.GetComponent<SaveManager> ();
-
-		constantsManager.setupScene ();
-		if (numSheepInExistence == 0) numSheepInExistence = initialSheepNum;
+		numSheepInExistence = GameObject.FindGameObjectsWithTag ("Sheep").Length;
 	}
 		
 	// Getters and setters 
@@ -45,10 +41,9 @@ public class ScoreManager : MonoBehaviour {
 		saveManager.ClearSaveData ();
 	}
 
-	// I don't think we need this...
-//	public void QuerySheepRemaining(){
-//		GameObject[] listOfSheepRemaining = GameObject.FindGameObjectsWithTag ("Sheep");
-//		numSheepInExistence = listOfSheepRemaining.Length;
-//	}
+	public void QuerySheepRemaining(){
+		GameObject[] listOfSheepRemaining = GameObject.FindGameObjectsWithTag ("Sheep");
+		numSheepInExistence = listOfSheepRemaining.Length;
+	}
 
 }

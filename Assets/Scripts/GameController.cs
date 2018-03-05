@@ -16,6 +16,4 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-
-
 }

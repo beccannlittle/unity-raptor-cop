@@ -17,9 +17,9 @@ public class TitleMenuActions : MonoBehaviour {
 	void Awake() {
 		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
-		saveManager = gameController.GetComponent<SaveManager> ();
 		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
 		uiManager = levelController.GetComponent<UIManager> ();
+		saveManager = levelController.GetComponent<SaveManager> ();
 	}
 
 	public void NewGame(){
@@ -30,7 +30,6 @@ public class TitleMenuActions : MonoBehaviour {
 	private bool isLoadError;
 	public void LoadGame() {
 		if (saveManager.doesSaveFileExist()) {
-			constantsManager.setShouldLoad (true);
 			SceneManager.LoadScene (constantsManager.getLevel(0));
 		} else {
 			if (!isLoadError) {
