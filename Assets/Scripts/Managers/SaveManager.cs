@@ -1,19 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-public class GameControl : MonoBehaviour {
-	public static GameControl control;
+public class SaveManager : MonoBehaviour {
 
-	public float playerscore;
-	public int numSheepInExistence;
-	public Text scoreboardText;
-	public Text sheepExistText;
+	[SerializeField]
+	private string saveGamePath = "savegame.data";
 
 	public GameObject sheepPrefab;
 	public GameObject buildingPrefab;
@@ -21,91 +17,75 @@ public class GameControl : MonoBehaviour {
 	public GameObject sheepOBJHolder;
 	public GameObject buildingOBJHolder;
 
-	void Update(){
-		QuerySheepRemaining ();
-		UpdateScoreUI ();
-		UpdateSheepExistUI ();
+	private ScoreManager scoreManager;
+	private string fullSaveGamePath;
 
-		if (hasWonGame ()) {
-			this.EndGame ();
-		}
+	void Awake() {
+		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
+		scoreManager = levelController.GetComponent<ScoreManager> ();
+		fullSaveGamePath = "" + Application.persistentDataPath + saveGamePath;
 	}
-	// Use this for initialization
-	void Awake () {
-		if (control == null) {
-			DontDestroyOnLoad (gameObject);
-			control = this;
-			LoadGameData ();
-		} else if(!control.Equals(this)) {
-			Destroy (gameObject);
-		}
-	}
-	private bool hasWonGame(){
-		return (numSheepInExistence <= 0);
-	}
-	private void EndGame(){
-		Debug.Log ("You won the game!");
-		SceneManager.LoadScene (GameConstants.SCENE_CREDITS);
-		ClearSaveData ();
-		Destroy (this.gameObject);
-	}
+
 	public void SaveGameData(){
+		Debug.Log ("saving");
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (GameConstants.RESOURCE_SAVEGAME_PATH);
+		FileStream file = File.Create (fullSaveGamePath);
 
 		SaveGameControlData (bf, file);
 
 		file.Close ();
 	}
+
+	public bool doesSaveFileExist() {
+		return File.Exists (fullSaveGamePath);
+	}
+
 	public void LoadGameData(){
-		if(File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)){
+		if(File.Exists(fullSaveGamePath)){
 			ClearSceneData ();
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (GameConstants.RESOURCE_SAVEGAME_PATH, FileMode.Open);			
+			FileStream file = File.Open (fullSaveGamePath, FileMode.Open);			
 
 			GameData data = (GameData)bf.Deserialize (file);
 			LoadGameControlData (data);
 			file.Close ();
 		}
 	}
+
+	private void LoadGameControlData(GameData gdata){
+
+		LoadSavedPlayer (gdata.playerdata);
+		LoadSavedSheepData (gdata.sheepdata);
+		LoadSavedBuildingData (gdata.buildingdata);
+
+		scoreManager.setPlayerScore(gdata.score);
+		scoreManager.setNumSheepInExistence(gdata.numExistingSheep);
+	}
+
 	private void ClearSceneData(){
-		foreach (Transform sheep in sheepOBJHolder.transform) {
-			Destroy (sheep.gameObject);
+		if (sheepOBJHolder != null) {
+			foreach (Transform sheep in sheepOBJHolder.transform) {
+				Destroy (sheep.gameObject);
+			}
 		}
-		foreach (Transform building in buildingOBJHolder.transform) {
-			Destroy (building.gameObject);
+		if (buildingOBJHolder != null) {
+			foreach (Transform building in buildingOBJHolder.transform) {
+				Destroy (building.gameObject);
+			}
 		}
 	}
+
 	public void ClearSaveData(){
-		if(File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)){
-			File.Delete (GameConstants.RESOURCE_SAVEGAME_PATH);
+		if(File.Exists(fullSaveGamePath)){
+			File.Delete (fullSaveGamePath);
 		}
 	}
-	public void AddScore(float addvalue){
-		playerscore += addvalue;
-		UpdateScoreUI ();
-	}
-	public void UpdateScoreUI(){
-		if (scoreboardText != null) {
-			scoreboardText.text = GameConstants.RESOURCE_SCOREPREFIX + playerscore;
-		}
-	}
-	public void AddSheep(int addvalue){
-		numSheepInExistence += addvalue;
-		UpdateSheepExistUI ();
-	}
-	public void UpdateSheepExistUI(){
-		sheepExistText.text = GameConstants.RESOURCE_SHEEPEXISTPREFIX + numSheepInExistence;
-	}
-	public void QuerySheepRemaining(){
-		GameObject[] listOfSheepRemaining = GameObject.FindGameObjectsWithTag (GameConstants.TAG_SHEEP);
-		numSheepInExistence = listOfSheepRemaining.Length;
-	}
+
 	public void SaveGameControlData(BinaryFormatter bff, FileStream file){
 
 		GameData optionsData = new GameData ();
-		optionsData.score = playerscore;
-		optionsData.numExistingSheep = numSheepInExistence;
+		optionsData.score = scoreManager.getPlayerScore();
+		optionsData.numExistingSheep = scoreManager.getNumSheepInExistence();
 
 		optionsData.playerdata = BuildPlayerData ();
 		optionsData.sheepdata = BuildSheepData ();
@@ -113,17 +93,9 @@ public class GameControl : MonoBehaviour {
 
 		bff.Serialize (file, optionsData);
 	}
-	private void LoadGameControlData(GameData gdata){
 
-		LoadSavedPlayer (gdata.playerdata);
-		LoadSavedSheepData (gdata.sheepdata);
-		LoadSavedBuildingData (gdata.buildingdata);
 
-		playerscore = gdata.score;
-		numSheepInExistence = gdata.numExistingSheep;
-		Debug.Log (GameConstants.RESOURCE_SCOREPREFIX + playerscore);
-		Debug.Log (GameConstants.RESOURCE_SHEEPEXISTPREFIX + numSheepInExistence);
-	}
+
 	private PlayerData BuildPlayerData(){
 		PlayerData pd = new PlayerData ();
 		pd.positionX = playerOBJ.transform.position.x;
@@ -135,12 +107,14 @@ public class GameControl : MonoBehaviour {
 
 		return pd;
 	}
+
 	private void LoadSavedPlayer(PlayerData pd){
 		if(pd != null) {
 			playerOBJ.transform.position =  new Vector3(pd.positionX,pd.positionY,pd.positionZ);
 			playerOBJ.transform.rotation = Quaternion.Euler(pd.rotationX,pd.rotationY,pd.rotationZ);
 		}
 	}
+
 	private List<SheepData> BuildSheepData(){
 		List<SheepData> sheepDataList = new List<SheepData>();
 
@@ -158,12 +132,14 @@ public class GameControl : MonoBehaviour {
 		}
 		return sheepDataList;
 	}
+
 	private void LoadSavedSheepData(List<SheepData> sheepdatalist){
 		foreach(SheepData sd in sheepdatalist){
 			GameObject newSheep = Instantiate (sheepPrefab, new Vector3(sd.positionX,sd.positionY,sd.positionZ), Quaternion.Euler(sd.rotationX,sd.rotationY,sd.rotationZ), sheepOBJHolder.transform);
 			newSheep.GetComponent<StateCartridgeController> ().state = sd.sheepstate;
 		}
 	}
+
 	private List<BuildingData> BuildBuildingData(){
 		List<BuildingData> buildingDataList = new List<BuildingData> ();
 		foreach(Transform building in buildingOBJHolder.transform){
@@ -181,19 +157,21 @@ public class GameControl : MonoBehaviour {
 		}
 		return buildingDataList;
 	}
+
 	private void LoadSavedBuildingData(List<BuildingData> buildingdatalist){
 		foreach(BuildingData bd in buildingdatalist){
 			Instantiate (buildingPrefab, new Vector3(bd.positionX,bd.positionY,bd.positionZ), Quaternion.Euler(bd.rotationX,bd.rotationY,bd.rotationZ), buildingOBJHolder.transform);
 		}
 	}
+
 }
 
 [Serializable]
 class GameData {
+	public string currentLevel;
 	public float score;
 	public int numExistingSheep;
 	public PlayerData playerdata;
 	public List<SheepData> sheepdata;
 	public List<BuildingData> buildingdata;
-
 }

@@ -5,15 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class EscapeMenuActions : MonoBehaviour {
 
-	public GameObject gameManager;
 	public GameObject escapeMenuGraphics;
 	public GameObject optionsMenuGraphics;
 
-	private GameObject levelController;
+	private ConstantsManager constantsManager;
+	private SaveManager saveManager;
 	private UIManager uiManager;
 
 	void Awake() {
-		levelController = GameObject.FindGameObjectWithTag ("LevelController");
+		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
+		constantsManager = gameController.GetComponent<ConstantsManager> ();
+		saveManager = gameController.GetComponent<SaveManager> ();
+		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
 		uiManager = levelController.GetComponent<UIManager> ();
 	}
 
@@ -26,8 +29,8 @@ public class EscapeMenuActions : MonoBehaviour {
 	}
 
 	public void Save() {
-		gameManager.GetComponent<GameControl> ().ClearSaveData ();
-		gameManager.GetComponent<GameControl> ().SaveGameData ();
+		saveManager.ClearSaveData ();
+		saveManager.SaveGameData ();
 		Resume ();
 	}
 
@@ -37,8 +40,7 @@ public class EscapeMenuActions : MonoBehaviour {
 	}
 
 	public void Quit() {
-		SceneManager.LoadScene (GameConstants.SCENE_TITLEMENU);	
-		Destroy (gameManager);
+		SceneManager.LoadScene (constantsManager.getTitleScreen());	
 	}
 
 	public void OpenOptionsMenu() {

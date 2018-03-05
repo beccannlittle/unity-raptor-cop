@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4492027624624514}
-  - component: {fileID: 114964180646179206}
   - component: {fileID: 114673694430255186}
   m_Layer: 0
   m_Name: GameManager
@@ -63,22 +62,3 @@ MonoBehaviour:
   playerOBJ: {fileID: 0}
   sheepOBJHolder: {fileID: 0}
   buildingOBJHolder: {fileID: 0}
---- !u!114 &114964180646179206
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1549961593901166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a92e58e403f44d4ab162b3d6af34b4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterVolumeEnabled: 0
-  sfxVolumeEnabled: 0
-  uiVolumeEnabled: 0
-  ambientVolumeEnabled: 0
-  masterVolume: 0
-  sfxVolume: 0
-  uiVolume: 0
-  ambientVolume: 0

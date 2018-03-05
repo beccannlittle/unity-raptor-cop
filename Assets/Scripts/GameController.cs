@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
-	private static GameController controller;
+	public static GameController control;
 
 	void Awake () {
-		if (controller == null) {
+		if (control == null) {
 			DontDestroyOnLoad (gameObject);
-			controller = this;
-		} else if(!controller.Equals(this)) {
+			control = this;
+		} else if(!control.Equals(this)) {
 			Destroy (gameObject);
 		}
 	}
+
+
+
 }

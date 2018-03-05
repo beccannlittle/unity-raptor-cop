@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114731415484836570}
   - component: {fileID: 82586142602298384}
   - component: {fileID: 114171864736053808}
+  - component: {fileID: 114053087740370790}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: LevelController
@@ -51,7 +52,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7f0a8a2ad56bc4e01880cceb579c8f18, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 78c1e7079ea384a2e91623f7b47e5f3e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -122,6 +123,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114053087740370790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1420847224098362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb5d2546719d4fd28548ae4f6e8ffb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialSheepNum: 5
 --- !u!114 &114171864736053808
 MonoBehaviour:
   m_ObjectHideFlags: 1

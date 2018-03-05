@@ -21,6 +21,13 @@ public class StateCartridgeController : MonoBehaviour {
 	public State state = State.Idle;
 	public IStateCartridge currentCartridge;
 
+	private ScoreManager scoreManager;
+
+	void Awake() {
+		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
+		scoreManager = levelController.GetComponent<ScoreManager> ();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if(state.Equals(State.Idle)){
@@ -44,7 +51,7 @@ public class StateCartridgeController : MonoBehaviour {
 	}
 	public void Die(){
 		this.state = State.Dead;
-		GameObject.Find ("GameManager").GetComponent<GameControl> ().AddScore (15f);
-		GameObject.Find ("GameManager").GetComponent<GameControl> ().AddSheep(-1);
+		scoreManager.AddScore (15f);
+		scoreManager.AddSheep(-1);
 	}
 }

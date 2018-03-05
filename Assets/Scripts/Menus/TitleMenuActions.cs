@@ -10,25 +10,27 @@ public class TitleMenuActions : MonoBehaviour {
 	public GameObject loadError;
 	public GameObject optionsMenuGraphics;
 
-	private GameObject levelController;
+	private ConstantsManager constantsManager;
 	private UIManager uiManager;
+	private SaveManager saveManager;
 
 	void Awake() {
-		levelController = GameObject.FindGameObjectWithTag ("LevelController");
+		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
+		constantsManager = gameController.GetComponent<ConstantsManager> ();
+		saveManager = gameController.GetComponent<SaveManager> ();
+		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
 		uiManager = levelController.GetComponent<UIManager> ();
 	}
 
 	public void NewGame(){
-		if (File.Exists (GameConstants.RESOURCE_SAVEGAME_PATH)) {
-			File.Delete (GameConstants.RESOURCE_SAVEGAME_PATH);
-		}
-		SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
+		saveManager.ClearSaveData ();
+		SceneManager.LoadScene(constantsManager.getLevel(0));
 	}
 
 	private bool isLoadError;
-	public void LoadGame(){
-		if (File.Exists(GameConstants.RESOURCE_SAVEGAME_PATH)) {
-			SceneManager.LoadScene (GameConstants.SCENE_WORLD_001);
+	public void LoadGame() {
+		if (saveManager.doesSaveFileExist()) {
+			SceneManager.LoadScene (constantsManager.getLevel(0));
 		} else {
 			if (!isLoadError) {
 				Instantiate (loadError, gameObject.transform);
