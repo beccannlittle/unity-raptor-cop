@@ -18,7 +18,8 @@ public class ScoreManager : MonoBehaviour {
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
 		saveManager = gameController.GetComponent<SaveManager> ();
 
-		numSheepInExistence = initialSheepNum;
+		constantsManager.setupScene ();
+		if (numSheepInExistence == 0) numSheepInExistence = initialSheepNum;
 	}
 		
 	// Getters and setters 

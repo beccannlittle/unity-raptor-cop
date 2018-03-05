@@ -23,4 +23,23 @@ public class ConstantsManager : MonoBehaviour {
 	}
 	public string getCredits() { return credits; }
 
+	private SaveManager saveManager;
+
+	void Awake () {
+		saveManager = gameObject.GetComponent<SaveManager> ();
+	}
+
+	private bool shouldLoad;
+
+	public void setShouldLoad(bool value) {
+		shouldLoad = value;
+	}
+
+	public void setupScene() {
+		if (shouldLoad) {
+			saveManager.LoadGameData ();
+		}
+		shouldLoad = false;
+	}
+
 }

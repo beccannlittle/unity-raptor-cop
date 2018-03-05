@@ -30,6 +30,7 @@ public class TitleMenuActions : MonoBehaviour {
 	private bool isLoadError;
 	public void LoadGame() {
 		if (saveManager.doesSaveFileExist()) {
+			constantsManager.setShouldLoad (true);
 			SceneManager.LoadScene (constantsManager.getLevel(0));
 		} else {
 			if (!isLoadError) {
