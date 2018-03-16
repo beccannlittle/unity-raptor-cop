@@ -1,0 +1,265 @@
+fileFormatVersion: 2
+guid: bb841d8cb797c9644ae2b8c0045e41b1
+timeCreated: 1521167582
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Ear.L
+    100004: Ear.L_end
+    100006: Ear.R
+    100008: Ear.R_end
+    100010: FrontFoot.L
+    100012: FrontFoot.L_end
+    100014: FrontFoot.R
+    100016: FrontFoot.R_end
+    100018: FrontFootCTRL.L
+    100020: FrontFootCTRL.R
+    100022: FrontKnee.L
+    100024: FrontKnee.L_end
+    100026: FrontKnee.R
+    100028: FrontKnee.R_end
+    100030: FrontLower.L
+    100032: FrontLower.R
+    100034: FrontUpper.L
+    100036: FrontUpper.R
+    100038: Head
+    100040: RearFoot.L
+    100042: RearFoot.L_end
+    100044: RearFoot.R
+    100046: RearFoot.R_end
+    100048: RearFootCTRL.L
+    100050: RearFootCTRL.R
+    100052: RearKnee.L
+    100054: RearKnee.L_end
+    100056: RearKnee.R
+    100058: RearKnee.R_end
+    100060: RearLower.L
+    100062: RearLower.R
+    100064: RearUpper.L
+    100066: RearUpper.R
+    100068: Root
+    100070: //RootNode
+    100072: SheepLP
+    100074: Spine
+    100076: Spine.001
+    100078: Tail
+    100080: Tail_end
+    400000: Armature
+    400002: Ear.L
+    400004: Ear.L_end
+    400006: Ear.R
+    400008: Ear.R_end
+    400010: FrontFoot.L
+    400012: FrontFoot.L_end
+    400014: FrontFoot.R
+    400016: FrontFoot.R_end
+    400018: FrontFootCTRL.L
+    400020: FrontFootCTRL.R
+    400022: FrontKnee.L
+    400024: FrontKnee.L_end
+    400026: FrontKnee.R
+    400028: FrontKnee.R_end
+    400030: FrontLower.L
+    400032: FrontLower.R
+    400034: FrontUpper.L
+    400036: FrontUpper.R
+    400038: Head
+    400040: RearFoot.L
+    400042: RearFoot.L_end
+    400044: RearFoot.R
+    400046: RearFoot.R_end
+    400048: RearFootCTRL.L
+    400050: RearFootCTRL.R
+    400052: RearKnee.L
+    400054: RearKnee.L_end
+    400056: RearKnee.R
+    400058: RearKnee.R_end
+    400060: RearLower.L
+    400062: RearLower.R
+    400064: RearUpper.L
+    400066: RearUpper.R
+    400068: Root
+    400070: //RootNode
+    400072: SheepLP
+    400074: Spine
+    400076: Spine.001
+    400078: Tail
+    400080: Tail_end
+    2100000: SheepMatc
+    4300000: SheepLP
+    7400000: Armature|Armature.001Action
+    7400002: Armature|Armature.001Action.001
+    7400004: Armature|Idle 1
+    7400006: Armature|Idle1.HeadBob
+    7400008: Armature|Prance
+    7400010: Armature|SheepHPAction
+    7400012: Armature|SheepHPAction.001
+    7400014: Armature|Walk
+    9500000: //RootNode
+    13700000: SheepLP
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Idle1.HeadBob
+      takeName: Armature|Idle1.HeadBob
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Prance
+      takeName: Armature|Prance
+      firstFrame: 0
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Walk
+      takeName: Armature|Walk
+      firstFrame: 0
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 1
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
