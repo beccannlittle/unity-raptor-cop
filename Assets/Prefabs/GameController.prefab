@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleScreen: TitleScreen
   levels:
-  - BeccasPlayground
+  - Level01
   credits: Credits
   saveGamePath: savegame.data
 --- !u!114 &114874030662091410
