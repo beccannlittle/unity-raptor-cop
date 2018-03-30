@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 4706309727880388}
   - component: {fileID: 95218575282001192}
   - component: {fileID: 114817177504128530}
+  - component: {fileID: 208192499640666884}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Building
@@ -339,3 +340,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9a5d5cee8effb43a96db95d6811fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &208192499640666884
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621779630937630}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 8.5, y: 4, z: 5.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1, y: 5, z: 0}
+  m_TimeToStationary: 0.5

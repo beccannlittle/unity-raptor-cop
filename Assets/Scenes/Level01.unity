@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 9edccc741b1544321a987d2e4f7dd2ec, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 67cf1b6dc0a6dd947ab083fc4c8a97e0, type: 2}
 --- !u!1 &473578 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1378322280689744, guid: 0a0f4faf0897f4c14af54f043e2c0660,
@@ -1022,7 +1022,7 @@ Skybox:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052242640}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 0}
+  m_CustomSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1142317419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,8 +1046,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142317419}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000004371139}
-  m_LocalPosition: {x: -121.27548, y: 247.74997, z: 173.1177}
+  m_LocalRotation: {x: 0.2183258, y: 0.47637263, z: 0.12341571, w: -0.84271675}
+  m_LocalPosition: {x: -89.94452, y: 190.79597, z: -164.35483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049477344}
@@ -1060,7 +1060,7 @@ Skybox:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142317419}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 0}
+  m_CustomSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!20 &1142317422
 Camera:
   m_ObjectHideFlags: 0
@@ -1440,7 +1440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2049477344
 Transform:
   m_ObjectHideFlags: 0
@@ -1493,7 +1493,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: e3ed26f449497414dbe691b20cdf2fa4, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 2000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
