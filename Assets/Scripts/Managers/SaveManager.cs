@@ -170,7 +170,9 @@ public class SaveManager : MonoBehaviour {
 	private void LoadSavedBuildingData(List<BuildingData> buildingdatalist){
 		GameObject buildingList = GameObject.FindGameObjectWithTag ("BuildingList");
 		foreach(BuildingData bd in buildingdatalist){
-			Instantiate (buildingPrefab, new Vector3(bd.positionX,bd.positionY,bd.positionZ), Quaternion.Euler(bd.rotationX,bd.rotationY,bd.rotationZ), buildingList.transform);
+			GameObject buildingOBJ = Instantiate (buildingPrefab, new Vector3(bd.positionX,bd.positionY,bd.positionZ), Quaternion.Euler(bd.rotationX,bd.rotationY,bd.rotationZ), buildingList.transform);
+			buildingOBJ.GetComponent<Building> ().m_health.val = bd.health;
+			Debug.Log("Loading building with health = "+ buildingOBJ.GetComponent<Building>().m_health.val);
 		}
 	}
 

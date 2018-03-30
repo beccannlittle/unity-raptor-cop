@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision col){
 		if(col.gameObject.CompareTag("Sheep")){
-			col.gameObject.GetComponent<StateCartridgeController> ().Die();
+			col.gameObject.GetComponent<StateCartridgeController> ().state = StateCartridgeController.State.Dead;
 		}
 	}	
 	void FixedUpdate () {

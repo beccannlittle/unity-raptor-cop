@@ -18,6 +18,7 @@ public class Building : MonoBehaviour {
 
 	public void TakeDamage(float dmg){
 		m_health.addVal (-dmg);
+		Debug.Log ("I have "+m_health.val+" Health Left");
 		if (m_health.val <= m_health.minVal) {
 			this.Die ();
 		}

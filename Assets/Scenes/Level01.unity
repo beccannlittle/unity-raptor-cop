@@ -328,19 +328,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114837839467005652, guid: 57b4d44a3feed4a828ef15a5bb7d22ff,
-        type: 2}
-      propertyPath: sheepType
-      value: 
-      objectReference: {fileID: 11400000, guid: 8c0735f8fa3f04a1d9e5950b0041dec7,
-        type: 2}
     - target: {fileID: 1183233802307334, guid: 57b4d44a3feed4a828ef15a5bb7d22ff, type: 2}
       propertyPath: m_Name
       value: Sheep (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4654594017690160, guid: 57b4d44a3feed4a828ef15a5bb7d22ff, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -31.376001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57b4d44a3feed4a828ef15a5bb7d22ff, type: 2}
@@ -1046,8 +1036,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142317419}
-  m_LocalRotation: {x: 0.2183258, y: 0.47637263, z: 0.12341571, w: -0.84271675}
-  m_LocalPosition: {x: -89.94452, y: 190.79597, z: -164.35483}
+  m_LocalRotation: {x: 0.18067932, y: 0.38767192, z: 0.07777826, w: -0.9005643}
+  m_LocalPosition: {x: 9.805908, y: 195.0417, z: -70.22302}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049477344}
@@ -1237,12 +1227,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114837839467005652, guid: 57b4d44a3feed4a828ef15a5bb7d22ff,
-        type: 2}
-      propertyPath: sheepType
-      value: 
-      objectReference: {fileID: 11400000, guid: 8c0735f8fa3f04a1d9e5950b0041dec7,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57b4d44a3feed4a828ef15a5bb7d22ff, type: 2}
   m_IsPrefabParent: 0

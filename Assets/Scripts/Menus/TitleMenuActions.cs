@@ -44,6 +44,8 @@ public class TitleMenuActions : MonoBehaviour {
 	}
 
 	public void OpenOptionsMenu() {
-		uiManager.SetCurrentUI (optionsMenuGraphics);
+		if(optionsMenuGraphics != null){
+			uiManager.SetCurrentUI (optionsMenuGraphics);
+		}
 	}
 }
