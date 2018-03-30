@@ -88,11 +88,13 @@ public class SaveManager : MonoBehaviour {
 		List<BuildingData> buildingDataList = new List<BuildingData> ();
 		foreach(Transform building in buildingOBJHolder.transform){
 			BuildingData bd = new BuildingData ();
-
+			//Health
+			bd.health = building.GetComponent<Building> ().m_health.val;
+			//Location
 			bd.positionX = building.transform.position.x;
 			bd.positionY = building.transform.position.y;
 			bd.positionZ = building.transform.position.z;
-
+			//Rotation
 			bd.rotationX = building.transform.rotation.x;
 			bd.rotationY = building.transform.rotation.y;
 			bd.rotationZ = building.transform.rotation.z;
