@@ -37,8 +37,10 @@ public class ScoreManager : MonoBehaviour {
 
 	private void EndGame(){
 		Debug.Log ("You won the game!");
-		SceneManager.LoadScene (constantsManager.getCredits());
-		saveManager.ClearSaveData ();
+		SceneManager.LoadScene (constantsManager.getCredits ());
+		if (saveManager != null) {
+			saveManager.ClearSaveData ();
+		}
 	}
 
 	public void QuerySheepRemaining(){
