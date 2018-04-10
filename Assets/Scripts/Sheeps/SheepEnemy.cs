@@ -30,10 +30,9 @@ public class SheepEnemy : MonoBehaviour {
 	public float wanderDistance;
 	private NavMeshAgent navAgent;
 
-	void Start ()
+	void Awake ()
 	{
 		InitializeStartingValues (sheepType);
-		//SaveData ();
 	}
 
 	void InitializeStartingValues (SheepEnemyType sheepT)
@@ -66,10 +65,10 @@ public class SheepEnemy : MonoBehaviour {
 		}
 		if (attackTarget != null) {
 			RaycastHit hit;
-			Debug.DrawRay (transform.position, (attackTarget.transform.position - transform.position).normalized * swingDistance, Color.green);
-			Debug.Log ("Did" + gameObject.name + " hit:" + (Physics.Raycast (transform.position, (attackTarget.transform.position - transform.position).normalized, out hit, swingDistance)));
+			//Debug.DrawRay (transform.position, (attackTarget.transform.position - transform.position).normalized * swingDistance, Color.green);
+			//Debug.Log ("Did" + gameObject.name + " hit:" + (Physics.Raycast (transform.position, (attackTarget.transform.position - transform.position).normalized, out hit, swingDistance)));
 			if (Physics.Raycast (transform.position, (attackTarget.transform.position - transform.position).normalized, out hit, swingDistance)) {
-				Debug.Log ("attack Target" + attackTarget.name + "!");
+				//Debug.Log ("attack Target" + attackTarget.name + "!");
 				attackTarget.GetComponent<Building> ().TakeDamage(sheepDmg);
 				navAgent.SetDestination (transform.position);
 				attackTarget = null;
@@ -83,7 +82,7 @@ public class SheepEnemy : MonoBehaviour {
 	}
 
 	private GameObject FindClosestBuilding() {
-		GameObject buildingOBJHolder = GameObject.Find ("LevelController").GetComponent<SaveManager> ().buildingOBJHolder;
+		GameObject buildingOBJHolder = GameObject.FindGameObjectWithTag ("BuildingList");
 		GameObject closestBuilding = null;
 		float closestDist = this.attackDistance;
 		RaycastHit hit;
@@ -183,7 +182,7 @@ public class SheepEnemy : MonoBehaviour {
 }
 
 [Serializable]
-class SheepData {
+public class SheepData {
 	public float positionX;
 	public float positionY;
 	public float positionZ;

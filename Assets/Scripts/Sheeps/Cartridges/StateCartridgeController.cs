@@ -23,11 +23,11 @@ public class StateCartridgeController : MonoBehaviour {
 	public State state = State.Idle;
 	public IStateCartridge currentCartridge;
 
-	private ScoreManager scoreManager;
+	//private ScoreManager scoreManager;
 
 	void Awake() {
-		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
-		scoreManager = levelController.GetComponent<ScoreManager> ();
+		//GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
+		//scoreManager = levelController.GetComponent<ScoreManager> ();
 	}
 
 	// Update is called once per frame

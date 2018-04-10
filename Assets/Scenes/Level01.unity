@@ -286,7 +286,8 @@ Prefab:
       propertyPath: buildingOBJHolder
       value: 
       objectReference: {fileID: 740995728}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114302091401913442, guid: e44de4b56442a4ff99c9722460487342, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e44de4b56442a4ff99c9722460487342, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &233272471
@@ -445,6 +446,24 @@ GameObject:
   m_PrefabParentObject: {fileID: 1420847224098362, guid: e44de4b56442a4ff99c9722460487342,
     type: 2}
   m_PrefabInternal: {fileID: 144963805}
+--- !u!114 &600531213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 600531212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789bf6b884cd8834aba76525f632d706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sheepPrefab: {fileID: 1183233802307334, guid: 57b4d44a3feed4a828ef15a5bb7d22ff,
+    type: 2}
+  buildingPrefab: {fileID: 1621779630937630, guid: d587602747198e147b1c6fcee0866383,
+    type: 2}
+  playerOBJ: {fileID: 963333846}
+  sheepOBJHolder: {fileID: 1967290556}
+  buildingOBJHolder: {fileID: 740995728}
 --- !u!1001 &682850051
 Prefab:
   m_ObjectHideFlags: 0
@@ -962,8 +981,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052242640}
-  m_LocalRotation: {x: 0.17491068, y: 0.75625396, z: 0.5891289, w: -0.22452939}
-  m_LocalPosition: {x: 37.326874, y: 151.50093, z: -19.892921}
+  m_LocalRotation: {x: -0.21797289, y: -0, z: -0, w: 0.97595483}
+  m_LocalPosition: {x: -114.41864, y: 233.69698, z: 21.518112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049477344}
@@ -1152,6 +1171,22 @@ Transform:
   m_Father: {fileID: 1927270033}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1553536199 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1193940701391894, guid: fc87ed6468c3741508b923aca6aa58ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001697407}
+--- !u!114 &1553536200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553536199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce015c38ab642144b460b3f7d44a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1555060046 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224644832922467550, guid: 0a0f4faf0897f4c14af54f043e2c0660,

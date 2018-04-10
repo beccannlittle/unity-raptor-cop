@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour {
 
 	private ConstantsManager constantsManager;
-	private SaveManager saveManager;
+	private SaveGame saveManager;
 
 	private float playerScore;
 	private int numSheepInExistence;
@@ -14,8 +14,8 @@ public class ScoreManager : MonoBehaviour {
 	void Awake () {
 		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
-		saveManager = gameController.GetComponent<SaveManager> ();
-		numSheepInExistence = GameObject.FindGameObjectsWithTag ("Sheep").Length;
+		saveManager = gameController.GetComponent<SaveGame> ();
+		QuerySheepRemaining ();
 	}
 		
 	// Getters and setters 
@@ -24,7 +24,7 @@ public class ScoreManager : MonoBehaviour {
 	public int getNumSheepInExistence() { return numSheepInExistence; }
 	public void setNumSheepInExistence(int newNum) { numSheepInExistence = newNum; }
 
-	public void AddScore(float addvalue){
+	public void AddScore(float addvalue) {
 		playerScore += addvalue;
 	}
 
@@ -45,7 +45,9 @@ public class ScoreManager : MonoBehaviour {
 
 	public void QuerySheepRemaining(){
 		GameObject[] listOfSheepRemaining = GameObject.FindGameObjectsWithTag ("Sheep");
-		numSheepInExistence = listOfSheepRemaining.Length;
+		if (listOfSheepRemaining != null) {
+			numSheepInExistence = listOfSheepRemaining.Length;
+		}
 	}
 
 }
