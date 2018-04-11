@@ -5,14 +5,16 @@ using UnityEngine;
 public class StateCartridgeController : MonoBehaviour {
 	public enum State
 	{
-		Idle,
+		Attack,
+		Dead,
 		Graze,
-		Startled,
+		Idle,
 		Petrified,
-		Dead
+		Startled
 	}
 
 	public Cartridge_Idle idleCartridge = new Cartridge_Idle();
+	public Cartridge_Attack attackCartridge = new Cartridge_Attack();
 	public Cartridge_Graze grazeCartridge = new Cartridge_Graze();
 	public Cartridge_Startled startledCartridge = new Cartridge_Startled ();
 	public Cartridge_Petrified petrifiedCartridge = new Cartridge_Petrified ();
@@ -21,10 +23,19 @@ public class StateCartridgeController : MonoBehaviour {
 	public State state = State.Idle;
 	public IStateCartridge currentCartridge;
 
+	//private ScoreManager scoreManager;
+
+	void Awake() {
+		//GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
+		//scoreManager = levelController.GetComponent<ScoreManager> ();
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if(state.Equals(State.Idle)){
 			currentCartridge = idleCartridge;
+		} else if(state.Equals(State.Attack)){
+			currentCartridge = attackCartridge;
 		} else if(state.Equals(State.Graze)){
 			currentCartridge = grazeCartridge;
 		} else if(state.Equals(State.Startled)){
@@ -41,10 +52,5 @@ public class StateCartridgeController : MonoBehaviour {
 		if (currentCartridge != null) {
 			currentCartridge.Run (gameObject);
 		}
-	}
-	public void Die(){
-		this.state = State.Dead;
-		GameObject.Find ("GameManager").GetComponent<GameControl> ().AddScore (15f);
-		GameObject.Find ("GameManager").GetComponent<GameControl> ().AddSheep(-1);
 	}
 }

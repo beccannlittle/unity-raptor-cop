@@ -9,6 +9,11 @@ using System.IO;
 public class SheepEnemy : MonoBehaviour {
 	public SheepEnemyType sheepType;
 
+	public Meter m_rage;
+	public float attackDistance;
+	private GameObject attackTarget;
+	private Vector3 moveTowards;
+
 	public float hunger;
 	public float health;
 
@@ -25,16 +30,18 @@ public class SheepEnemy : MonoBehaviour {
 	public float wanderDistance;
 	private NavMeshAgent navAgent;
 
-	void Start ()
+	void Awake ()
 	{
 		InitializeStartingValues (sheepType);
-		//SaveData ();
 	}
 
 	void InitializeStartingValues (SheepEnemyType sheepT)
 	{
 		hunger = sheepT.getStartingHunger ();
 		health = sheepT.getStartingHealth ();
+
+		m_rage = new Meter (UnityEngine.Random.Range (0.0f, 40.0f), 0.0f, 100.0f, 30.0f, 70.0f);
+		attackDistance = sheepT.getAttackDistance ();
 
 		hungerDecayRateAmount = sheepT.getHungerDecayRateAmount ();
 		hungerDecayRateTime = sheepT.getHungerDecayRateTime ();
@@ -50,14 +57,64 @@ public class SheepEnemy : MonoBehaviour {
 		navAgent.angularSpeed = sheepT.getRotationSpeed ();
 	}
 
-	public void Wander(){
-		if(navAgent.remainingDistance <= 5.0f){
+	public void AttackClosestBuilding(){
+		float swingDistance = 10.0f;
+		float sheepDmg = 20.0f;
+		if (attackTarget == null) {
+			attackTarget = FindClosestBuilding ();
+		}
+		if (attackTarget != null) {
+			RaycastHit hit;
+			//Debug.DrawRay (transform.position, (attackTarget.transform.position - transform.position).normalized * swingDistance, Color.green);
+			//Debug.Log ("Did" + gameObject.name + " hit:" + (Physics.Raycast (transform.position, (attackTarget.transform.position - transform.position).normalized, out hit, swingDistance)));
+			if (Physics.Raycast (transform.position, (attackTarget.transform.position - transform.position).normalized, out hit, swingDistance)) {
+				//Debug.Log ("attack Target" + attackTarget.name + "!");
+				attackTarget.GetComponent<Building> ().TakeDamage(sheepDmg);
+				navAgent.SetDestination (transform.position);
+				attackTarget = null;
+				m_rage.SetToMin ();
+			} else {
+				navAgent.SetDestination (attackTarget.transform.position);
+			}
+		} else {
+			FleeTheScene ();
+		}
+	}
+
+	private GameObject FindClosestBuilding() {
+		GameObject buildingOBJHolder = GameObject.FindGameObjectWithTag ("BuildingList");
+		GameObject closestBuilding = null;
+		float closestDist = this.attackDistance;
+		RaycastHit hit;
+		foreach (Transform b in buildingOBJHolder.transform) {
+			if(Physics.Raycast(transform.position, (b.position - transform.position).normalized,out hit, attackDistance)){
+				if (hit.distance < closestDist) {
+					closestBuilding = b.gameObject;
+					closestDist = hit.distance;
+				}
+			}
+		}
+		return closestBuilding;
+	}
+
+	public void FleeTheScene () {
+		if (navAgent.isStopped) {
+			navAgent.isStopped = false;
+		}
+		if (navAgent.remainingDistance <= 5.0f) {
+			Vector3 newPos = RandomNavSphere (transform.position, wanderDistance*3, -1);
+			navAgent.SetDestination (newPos);
+		}
+	}
+
+	public void Wander() {
+		if(navAgent.remainingDistance <= 5.0f) {
 			Vector3 newPos = RandomNavSphere (transform.position, wanderDistance, -1);
 			navAgent.SetDestination (newPos);
 		}
 	}
 
-	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask){
+	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
 		Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
 		randDirection += origin;
 		NavMeshHit navHit;
@@ -65,25 +122,24 @@ public class SheepEnemy : MonoBehaviour {
 		return navHit.position;
 	}
 
-	public void TurnTo (Transform target)
-	{
+	public void TurnTo (Transform target) {
+		//March 30 - currently causes the sheep to move backwards and shouldn't do that.
 		Vector3 _direction = (target.position - transform.position).normalized;
 		Quaternion _lookRotation = Quaternion.LookRotation (_direction);
-		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime *  navAgent.angularSpeed);
+		transform.rotation = Quaternion.Slerp (transform.rotation, _lookRotation, Time.deltaTime * navAgent.angularSpeed);
 	}
 
-	public bool CanSeeTarget (GameObject target)
-	{
+	public bool CanSeeTarget (GameObject target) {
+		//March 26 - Currently not used but should be used for Startled state
 		Vector3 targetDirection = target.transform.position - transform.position;
 		float angleToTarget = Vector3.Angle (targetDirection, transform.forward);
-		if (angleToTarget <=  angleOfSight) {
+		if (angleToTarget <= angleOfSight) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	public void TickHunger (bool upDown)
-	{
+	public void TickHunger (bool upDown) {
 		//increment=false decrement=true
 		if (upDown) {
 			hunger =  hunger - ( hungerDecayRateAmount * Time.deltaTime);
@@ -92,24 +148,41 @@ public class SheepEnemy : MonoBehaviour {
 		}
 	}
 
-	public void TakeDamage (float damage)
-	{
-		 health =  health - (damage * Time.deltaTime);
+	public void TakeDamage (float damage) {
+		float newhealth = health - (damage * Time.deltaTime);
+		if (newhealth < 0.0f) {
+			health = 0.0f;
+		} else {
+			health = newhealth;
+		}
 	}
 
-	public void Heal (float regenAmount)
-	{
-		 health =  health + (regenAmount * Time.deltaTime);
+	public void Heal (float regenAmount) {
+		float newhealth = health + (regenAmount * Time.deltaTime);
+		if (newhealth > sheepType.getMaxHealth ()) {
+			health = sheepType.getMaxHealth ();
+		} else {
+			health = newhealth;
+		}
 	}
 
-	public void Die ()
-	{
+	public void ResetMoveSpeed(){
+		navAgent.speed = sheepType.getMoveSpeed ();
+	}
+
+	public void QuickenMoveSpeed(){
+		if (navAgent.speed.Equals (sheepType.getMoveSpeed ())) {
+			navAgent.speed = sheepType.getMoveSpeed () * 2;
+		}
+	}
+
+	public void Die () {
 		Destroy (gameObject);
 	}
 }
 
 [Serializable]
-class SheepData {
+public class SheepData {
 	public float positionX;
 	public float positionY;
 	public float positionZ;

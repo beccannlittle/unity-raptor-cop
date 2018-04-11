@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Sheep
   - Building
+  - Music
+  - SFX
+  - LevelController
+  - BuildingList
+  - EnemyList
   layers:
   - Default
   - TransparentFX

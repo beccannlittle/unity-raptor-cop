@@ -8,6 +8,12 @@
 /[Bb]uilds/
 /Assets/AssetStoreTools*
 
+/Assets/Scenes/Playgrounds/
+/Assets/Scenes/Playgrounds.meta
+
+/Assets/External/
+/Assets/External.meta
+
 # Visual Studio 2015 cache directory
 /.vs/
 
