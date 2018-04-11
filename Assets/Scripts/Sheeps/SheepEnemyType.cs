@@ -15,7 +15,7 @@ public class SheepEnemyType : ScriptableObject
 	public float hungerDecayInterval = 3.0f;
 
 	public float startledDistance = 50.0f;
-
+	public float attackDistance = 100.0f;
 	public float petrifiedDistance = 30.0f;
 
 	public float moveSpeed = 10.0f;
@@ -23,6 +23,7 @@ public class SheepEnemyType : ScriptableObject
 	public float rotationSpeed = 100.0f;
 	public float angleOfSight = 25.0f;
 
+	public float getAttackDistance (){return attackDistance;}
 	public float getStartingHealth (){return healthStarting;}
 
 	public float getMaxHealth (){return healthMax;}

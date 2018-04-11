@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision col){
 		if(col.gameObject.CompareTag("Sheep")){
-			col.gameObject.GetComponent<StateCartridgeController> ().Die();
+			col.gameObject.GetComponent<StateCartridgeController> ().state = StateCartridgeController.State.Dead;
 		}
 	}	
 	void FixedUpdate () {
@@ -43,11 +43,12 @@ public class Player : MonoBehaviour {
 }
 
 [Serializable]
-class PlayerData {
+public class PlayerData {
 	public float positionX;
 	public float positionY;
 	public float positionZ;
 	public float rotationX;
 	public float rotationY;
 	public float rotationZ;
+	public float rotationW;
 }

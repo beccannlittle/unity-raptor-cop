@@ -12,14 +12,14 @@ public class TitleMenuActions : MonoBehaviour {
 
 	private ConstantsManager constantsManager;
 	private UIManager uiManager;
-	private SaveManager saveManager;
+	private SaveGame saveManager;
 
 	void Awake() {
 		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
 		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
 		uiManager = levelController.GetComponent<UIManager> ();
-		saveManager = levelController.GetComponent<SaveManager> ();
+		saveManager = gameController.GetComponent<SaveGame> ();
 	}
 
 	public void NewGame(){
@@ -44,6 +44,8 @@ public class TitleMenuActions : MonoBehaviour {
 	}
 
 	public void OpenOptionsMenu() {
-		uiManager.SetCurrentUI (optionsMenuGraphics);
+		if(optionsMenuGraphics != null){
+			uiManager.SetCurrentUI (optionsMenuGraphics);
+		}
 	}
 }

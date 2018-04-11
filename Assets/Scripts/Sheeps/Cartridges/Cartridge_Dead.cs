@@ -8,6 +8,8 @@ public class Cartridge_Dead : IStateCartridge {
 	public void Run (GameObject gobject) {
 		gobject.SetActive (false);
 		gobject.transform.SetPositionAndRotation (deadzone, Quaternion.identity);
+		GameObject.Find ("LevelController").GetComponent<ScoreManager> ().AddScore (15f);
+		GameObject.Find ("LevelController").GetComponent<ScoreManager> ().AddSheep (-1);
 		GameObject.Destroy (gobject);
 	}
 
