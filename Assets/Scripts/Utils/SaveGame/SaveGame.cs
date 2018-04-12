@@ -44,7 +44,8 @@ public class SaveGame : MonoBehaviour {
 		}
 	}
 
-	public void LoadFromFile(string sceneName = default(string)){
+	//public void LoadFromFile(string sceneName = default(string)){
+	public void LoadFromFile(){
 		if(doesSaveFileExist()){
 			//Load AppData
 			BinaryFormatter bf = new BinaryFormatter();
@@ -56,12 +57,13 @@ public class SaveGame : MonoBehaviour {
 			}
 			Debug.Log ("Loading the game(JSON): " + JsonUtility.ToJson (sgd));
 			Debug.Log ("Loading the game(JSON) LvlData: " + JsonUtility.ToJson (sgd.levelDict["Level01"]));
-
+			/*
 			if (!string.IsNullOrEmpty(sceneName)) {
 			//Look for levelData with this sceneName
 			} else {
 				Debug.Log ("No sceneName provided to SaveGame.LoadFromFile() |"+sceneName+"|");
 			}
+			*/
 		}
 	}
 

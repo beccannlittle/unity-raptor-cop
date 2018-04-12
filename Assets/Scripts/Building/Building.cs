@@ -29,6 +29,23 @@ public class Building : MonoBehaviour {
 		gameObject.transform.SetPositionAndRotation (deadzone, Quaternion.identity);
 		GameObject.Destroy (gameObject);
 	}
+	public BuildingData BuildBuildingData(){
+		BuildingData bd = new BuildingData ();
+		//Health
+		bd.health = GetComponent<Building> ().m_health.val;
+		//Location
+		bd.positionX = transform.position.x;
+		bd.positionY = transform.position.y;
+		bd.positionZ = transform.position.z;
+		//Rotation
+		bd.rotationW = transform.rotation.w;
+		bd.rotationX = transform.rotation.x;
+		bd.rotationY = transform.rotation.y;
+		bd.rotationZ = transform.rotation.z;
+
+		return bd;
+
+	}
 }
 
 [Serializable]
@@ -40,5 +57,5 @@ public class BuildingData {
 	public float rotationX;
 	public float rotationY;
 	public float rotationZ;
-
+	public float rotationW;
 }

@@ -40,6 +40,23 @@ public class Player : MonoBehaviour {
 			rb.AddForce (Vector3.up*jumpForce, ForceMode.Impulse);
 		}
 	}
+	public PlayerData BuildPlayerData(){
+		PlayerData pd = new PlayerData ();
+		pd.positionX = transform.position.x;
+		pd.positionY = transform.position.y;
+		pd.positionZ = transform.position.z;
+
+		pd.rotationW = transform.rotation.w;
+		pd.rotationX = transform.rotation.x;
+		pd.rotationY = transform.rotation.y;
+		pd.rotationZ = transform.rotation.z;
+
+		return pd;
+	}
+	public void LoadPlayerData(PlayerData pd){
+		transform.position = new Vector3 (pd.positionX, pd.positionY, pd.positionZ);
+		transform.rotation = new Quaternion (pd.rotationX, pd.rotationY, pd.rotationZ, pd.rotationW);
+	}
 }
 
 [Serializable]

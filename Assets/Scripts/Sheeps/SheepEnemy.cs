@@ -179,6 +179,19 @@ public class SheepEnemy : MonoBehaviour {
 	public void Die () {
 		Destroy (gameObject);
 	}
+	public SheepData BuildSheepData(){
+		SheepData sd = new SheepData ();
+		sd.positionX = transform.position.x;
+		sd.positionY = transform.position.y;
+		sd.positionZ = transform.position.z;
+
+		sd.rotationW = transform.rotation.w;
+		sd.rotationX = transform.rotation.x;
+		sd.rotationY = transform.rotation.y;
+		sd.rotationZ = transform.rotation.z;
+		sd.sheepstate = gameObject.GetComponent<StateCartridgeController> ().state;
+		return sd;
+	}
 }
 
 [Serializable]
@@ -189,6 +202,7 @@ public class SheepData {
 	public float rotationX;
 	public float rotationY;
 	public float rotationZ;
+	public float rotationW;
 	public StateCartridgeController.State sheepstate;
 
 }
