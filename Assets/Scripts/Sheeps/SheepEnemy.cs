@@ -85,12 +85,14 @@ public class SheepEnemy : MonoBehaviour {
 		GameObject buildingOBJHolder = GameObject.FindGameObjectWithTag ("BuildingList");
 		GameObject closestBuilding = null;
 		float closestDist = this.attackDistance;
-		RaycastHit hit;
-		foreach (Transform b in buildingOBJHolder.transform) {
-			if(Physics.Raycast(transform.position, (b.position - transform.position).normalized,out hit, attackDistance)){
-				if (hit.distance < closestDist) {
-					closestBuilding = b.gameObject;
-					closestDist = hit.distance;
+		if (buildingOBJHolder != null) {
+			RaycastHit hit;
+			foreach (Transform b in buildingOBJHolder.transform) {
+				if (Physics.Raycast (transform.position, (b.position - transform.position).normalized, out hit, attackDistance)) {
+					if (hit.distance < closestDist) {
+						closestBuilding = b.gameObject;
+						closestDist = hit.distance;
+					}
 				}
 			}
 		}
