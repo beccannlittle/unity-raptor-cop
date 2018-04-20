@@ -42,30 +42,17 @@ public class Player : MonoBehaviour {
 	}
 	public PlayerData BuildPlayerData(){
 		PlayerData pd = new PlayerData ();
-		pd.positionX = transform.position.x;
-		pd.positionY = transform.position.y;
-		pd.positionZ = transform.position.z;
-
-		pd.rotationW = transform.rotation.w;
-		pd.rotationX = transform.rotation.x;
-		pd.rotationY = transform.rotation.y;
-		pd.rotationZ = transform.rotation.z;
+		pd.saveGameObjectDetails (gameObject);
 
 		return pd;
 	}
 	public void LoadPlayerData(PlayerData pd){
-		transform.position = new Vector3 (pd.positionX, pd.positionY, pd.positionZ);
-		transform.rotation = new Quaternion (pd.rotationX, pd.rotationY, pd.rotationZ, pd.rotationW);
+		transform.position = pd.getPositionVector3();
+		transform.rotation = pd.getRotationQuaternion ();
 	}
 }
 
 [Serializable]
-public class PlayerData {
-	public float positionX;
-	public float positionY;
-	public float positionZ;
-	public float rotationX;
-	public float rotationY;
-	public float rotationZ;
-	public float rotationW;
+public class PlayerData : TransformData {
+	//leaving this open in case there ever becomes more data for player
 }

@@ -85,7 +85,7 @@ public class Level01Controller : LevelController {
 		GameObject enemyList = GameObject.FindGameObjectWithTag ("EnemyList");
 		if (enemyList != null && sheepdatalist != null) {
 			foreach (SheepData sd in sheepdatalist) {
-				GameObject newSheep = Instantiate (sheepPrefab, new Vector3 (sd.positionX, sd.positionY, sd.positionZ), new Quaternion (sd.rotationX, sd.rotationY, sd.rotationZ, sd.rotationW), enemyList.transform);
+				GameObject newSheep = Instantiate (sheepPrefab, sd.getPositionVector3(), sd.getRotationQuaternion(), enemyList.transform);
 				newSheep.GetComponent<StateCartridgeController> ().state = sd.sheepstate;
 			}
 		}
@@ -95,7 +95,7 @@ public class Level01Controller : LevelController {
 		GameObject buildingList = GameObject.FindGameObjectWithTag ("BuildingList");
 		if(buildingList != null && buildingdatalist != null) {
 			foreach(BuildingData bd in buildingdatalist){
-				GameObject buildingOBJ = Instantiate (buildingPrefab, new Vector3(bd.positionX,bd.positionY,bd.positionZ), new Quaternion (bd.rotationX,bd.rotationY,bd.rotationZ,bd.rotationW), buildingList.transform);
+				GameObject buildingOBJ = Instantiate (buildingPrefab, bd.getPositionVector3(), bd.getRotationQuaternion(), buildingList.transform);
 				buildingOBJ.GetComponent<Building> ().m_health.val = bd.health;
 			}
 		}
