@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
 
 	public float speed;
 	public float attackForce;
-	public float attackTime;
+	public float attackCooldown;
 
 	Rigidbody rb;
 	Collider attackCol;
@@ -31,7 +31,9 @@ public class Player : MonoBehaviour {
 
 	void FixedUpdate () {
 		Move ();
-		Attack();
+		if (Input.GetAxis ("Attack") == 1 && !isAttacking) {
+			StartCoroutine (Attack ());
+		}
 	}
 
 	private void Move() {
@@ -43,17 +45,15 @@ public class Player : MonoBehaviour {
 		rb.MoveRotation (Quaternion.Euler(tempRot));
 	}
 
-	private void Attack() {
-		if (Input.GetAxis ("Attack") == 1) {
-			StartCoroutine (Fuck ());
-		}
-	}
+	private bool isAttacking;
 
-	IEnumerator Fuck() {
+	IEnumerator Attack() {
+		isAttacking = true;
 		attackCol.enabled = true;
 		rb.MovePosition (transform.position + transform.forward * Time.deltaTime * attackForce);
-		yield return new WaitForSeconds (attackTime);
+		yield return new WaitForSeconds (attackCooldown);
 		attackCol.enabled = false;
+		isAttacking = false;
 	}
 }
 
