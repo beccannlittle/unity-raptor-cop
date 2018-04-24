@@ -22,7 +22,6 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 		Collider myCollider = col.contacts [0].thisCollider;
-		Debug.Log (myCollider);
 		if (myCollider == attackCol) {
 			if (col.gameObject.CompareTag("Sheep")){
 				col.gameObject.GetComponent<SheepEnemy> ().Die ();
