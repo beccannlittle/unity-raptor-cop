@@ -10,11 +10,9 @@ public class Player : MonoBehaviour {
 	public float speed;
 	public float jumpForce;
 
-	InputManager inputManager;
 	Rigidbody rb;
 
 	private void Awake() {
-		inputManager = GetComponent<InputManager>();
 		rb = GetComponent<Rigidbody> ();
 	}
 
@@ -24,18 +22,18 @@ public class Player : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision col){
 		if(col.gameObject.CompareTag("Sheep")){
-			col.gameObject.GetComponent<StateCartridgeController> ().state = StateCartridgeController.State.Dead;
+			col.gameObject.GetComponent<SheepEnemy> ().Die ();
 		}
 	}	
 	void FixedUpdate () {
 		// Forward/backward
-		rb.MovePosition (transform.position + transform.forward * inputManager.CurrentForward * Time.deltaTime * speed);
+		rb.MovePosition (transform.position + transform.forward * Input.GetAxis ("Vertical") * Time.deltaTime * speed);
 		// Rotation
 		Vector3 tempRot = transform.rotation.eulerAngles;
-		tempRot.y += inputManager.CurrentRotation * Time.deltaTime;
+		tempRot.y += Input.GetAxis ("Horizontal") * 360 * Time.deltaTime;
 		rb.MoveRotation (Quaternion.Euler(tempRot));
 		// Jump
-		if (inputManager.CurrentJump == 1 && isGrounded) {
+		if (Input.GetAxis ("Jump") == 1 && isGrounded) {
 			isGrounded = false;
 			rb.AddForce (Vector3.up*jumpForce, ForceMode.Impulse);
 		}
