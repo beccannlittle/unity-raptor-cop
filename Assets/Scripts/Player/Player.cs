@@ -8,35 +8,53 @@ using System.IO;
 public class Player : MonoBehaviour {
 
 	public float speed;
-	public float jumpForce;
+	public float attackForce;
+	public float attackTime;
 
 	Rigidbody rb;
+	Collider attackCol;
 
 	private void Awake() {
 		rb = GetComponent<Rigidbody> ();
+		attackCol = GetComponentInChildren<SphereCollider> ();
+		attackCol.enabled = false;
 	}
 
-	bool isGrounded;
-	void OnCollisionStay() {
-		isGrounded = true;
-	}
 	void OnCollisionEnter(Collision col){
-		if(col.gameObject.CompareTag("Sheep")){
-			col.gameObject.GetComponent<SheepEnemy> ().Die ();
+		Collider myCollider = col.contacts [0].thisCollider;
+		Debug.Log (myCollider);
+		if (myCollider == attackCol) {
+			if (col.gameObject.CompareTag("Sheep")){
+				col.gameObject.GetComponent<SheepEnemy> ().Die ();
+			}
 		}
 	}	
+
 	void FixedUpdate () {
+		Move ();
+		Attack();
+	}
+
+	private void Move() {
 		// Forward/backward
 		rb.MovePosition (transform.position + transform.forward * Input.GetAxis ("Vertical") * Time.deltaTime * speed);
 		// Rotation
 		Vector3 tempRot = transform.rotation.eulerAngles;
 		tempRot.y += Input.GetAxis ("Horizontal") * 360 * Time.deltaTime;
 		rb.MoveRotation (Quaternion.Euler(tempRot));
-		// Jump
-		if (Input.GetAxis ("Jump") == 1 && isGrounded) {
-			isGrounded = false;
-			rb.AddForce (Vector3.up*jumpForce, ForceMode.Impulse);
+	}
+
+	private void Attack() {
+		if (Input.GetAxis ("Attack") == 1) {
+			StartCoroutine (Fuck ());
 		}
+	}
+
+	IEnumerator Fuck() {
+		attackCol.enabled = true;
+		rb.MovePosition (transform.position + transform.forward * Time.deltaTime * attackForce);
+		yield return new WaitForSeconds (attackTime);
+		attackCol.enabled = false;
 	}
 }
 
