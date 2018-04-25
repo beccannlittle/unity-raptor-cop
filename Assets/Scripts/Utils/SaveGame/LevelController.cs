@@ -7,12 +7,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 
 
-public abstract class LevelController : MonoBehaviour,LevelControllerInterface {
-	public GameObject sheepPrefab;
-	public GameObject buildingPrefab;
-	public GameObject playerOBJ;
-	public GameObject sheepOBJHolder;
-	public GameObject buildingOBJHolder;
+public abstract class LevelController : MonoBehaviour {
 
 	private ConstantsManager constantsManager;
 	public ScoreManager scoreManager;
@@ -25,11 +20,6 @@ public abstract class LevelController : MonoBehaviour,LevelControllerInterface {
 	public abstract LevelData GenerateLevelData ();
 	public abstract void LoadLevelData (LevelData leveld);
 
-	//PauseScene,ResumeScene
-}
-public interface LevelControllerInterface {
-	LevelData GenerateLevelData ();
-	void LoadLevelData (LevelData ld);
 	//PauseScene,ResumeScene
 }
 

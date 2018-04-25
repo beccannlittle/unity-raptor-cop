@@ -7,6 +7,11 @@ using System.IO;
 using UnityEngine.SceneManagement;
 
 public class Level01Controller : LevelController {
+	public GameObject sheepPrefab;
+	public GameObject buildingPrefab;
+	public GameObject playerOBJ;
+	public GameObject sheepOBJHolder;
+	public GameObject buildingOBJHolder;
 
 	public override LevelData GenerateLevelData(){
 		Debug.Log ("In the Level01 GenerateLevelData");
