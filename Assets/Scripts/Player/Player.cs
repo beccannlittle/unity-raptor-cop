@@ -8,37 +8,52 @@ using System.IO;
 public class Player : MonoBehaviour {
 
 	public float speed;
-	public float jumpForce;
+	public float attackForce;
+	public float attackCooldown;
 
-	InputManager inputManager;
 	Rigidbody rb;
+	Collider attackCol;
 
 	private void Awake() {
-		inputManager = GetComponent<InputManager>();
 		rb = GetComponent<Rigidbody> ();
+		attackCol = GetComponentInChildren<SphereCollider> ();
+		attackCol.enabled = false;
 	}
 
-	bool isGrounded;
-	void OnCollisionStay() {
-		isGrounded = true;
-	}
 	void OnCollisionEnter(Collision col){
-		if(col.gameObject.CompareTag("Sheep")){
-			col.gameObject.GetComponent<StateCartridgeController> ().state = StateCartridgeController.State.Dead;
+		Collider myCollider = col.contacts [0].thisCollider;
+		if (myCollider == attackCol) {
+			if (col.gameObject.CompareTag("Sheep")){
+				col.gameObject.GetComponent<SheepEnemy> ().Die ();
+			}
 		}
 	}	
+
 	void FixedUpdate () {
+		Move ();
+		if (Input.GetAxis ("Attack") == 1 && !isAttacking) {
+			StartCoroutine (Attack ());
+		}
+	}
+
+	private void Move() {
 		// Forward/backward
-		rb.MovePosition (transform.position + transform.forward * inputManager.CurrentForward * Time.deltaTime * speed);
+		rb.MovePosition (transform.position + transform.forward * Input.GetAxis ("Vertical") * Time.deltaTime * speed);
 		// Rotation
 		Vector3 tempRot = transform.rotation.eulerAngles;
-		tempRot.y += inputManager.CurrentRotation * Time.deltaTime;
+		tempRot.y += Input.GetAxis ("Horizontal") * 360 * Time.deltaTime;
 		rb.MoveRotation (Quaternion.Euler(tempRot));
-		// Jump
-		if (inputManager.CurrentJump == 1 && isGrounded) {
-			isGrounded = false;
-			rb.AddForce (Vector3.up*jumpForce, ForceMode.Impulse);
-		}
+	}
+
+	private bool isAttacking;
+
+	IEnumerator Attack() {
+		isAttacking = true;
+		attackCol.enabled = true;
+		rb.MovePosition (transform.position + transform.forward * Time.deltaTime * attackForce);
+		yield return new WaitForSeconds (attackCooldown);
+		attackCol.enabled = false;
+		isAttacking = false;
 	}
 	public PlayerData BuildPlayerData(){
 		PlayerData pd = new PlayerData ();

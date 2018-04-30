@@ -177,7 +177,7 @@ public class SheepEnemy : MonoBehaviour {
 	}
 
 	public void Die () {
-		Destroy (gameObject);
+		gameObject.GetComponent<StateCartridgeController> ().state = StateCartridgeController.State.Dead;
 	}
 	public SheepData BuildSheepData(){
 		SheepData sd = new SheepData ();
