@@ -32,7 +32,7 @@ public class Level01Controller : LevelController {
 	public override void LoadLevelData(LevelData leveld) {
 		//We should modify this so that it just moves/deletes the existing sheep/buildings in the scene instead of clear and instantiate new ones
 		CombatLevelData data = (CombatLevelData)leveld;
-		//ClearCombatSceneData (sheepOBJHolder, buildingOBJHolder);
+		ClearCombatSceneData (sheepOBJHolder, buildingOBJHolder);
 		if (data != null) {
 			LoadCombatScene (data,sheepPrefab, buildingPrefab);
 		}

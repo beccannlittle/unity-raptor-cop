@@ -83,9 +83,7 @@ public abstract class LevelController : MonoBehaviour {
 		if (enemyList != null && sheepdatalist != null) {
 			int i = 0;
 			foreach (SheepData sd in sheepdatalist) {
-				GameObject newSheep = enemyList.transform.GetChild (i).gameObject;
-				newSheep.transform.SetPositionAndRotation (sd.getPositionVector3(), sd.getRotationQuaternion());
-				//GameObject newSheep = Instantiate (prefab, sd.getPositionVector3(), sd.getRotationQuaternion(), enemyList.transform);
+				GameObject newSheep = Instantiate (prefab, sd.getPositionVector3(), sd.getRotationQuaternion(), enemyList.transform);
 				newSheep.GetComponent<StateCartridgeController> ().state = sd.sheepstate;
 				i++;
 			}
@@ -97,9 +95,7 @@ public abstract class LevelController : MonoBehaviour {
 		if(buildingList != null && buildingdatalist != null) {
 			int i = 0;
 			foreach(BuildingData bd in buildingdatalist){
-				GameObject buildingOBJ = buildingList.transform.GetChild (i).gameObject;
-				buildingOBJ.transform.SetPositionAndRotation (bd.getPositionVector3(), bd.getRotationQuaternion());
-				//GameObject buildingOBJ = Instantiate (prefab, bd.getPositionVector3(), bd.getRotationQuaternion(), buildingList.transform);
+				GameObject buildingOBJ = Instantiate (prefab, bd.getPositionVector3(), bd.getRotationQuaternion(), buildingList.transform);
 				buildingOBJ.GetComponent<Building> ().m_health.val = bd.health;
 				i++;
 			}
