@@ -55,15 +55,19 @@ public class Player : MonoBehaviour {
 		attackCol.enabled = false;
 		isAttacking = false;
 	}
+	public PlayerData BuildPlayerData(){
+		PlayerData pd = new PlayerData ();
+		pd.saveGameObjectDetails (gameObject);
+
+		return pd;
+	}
+	public void LoadPlayerData(PlayerData pd){
+		transform.position = pd.getPositionVector3();
+		transform.rotation = pd.getRotationQuaternion ();
+	}
 }
 
 [Serializable]
-public class PlayerData {
-	public float positionX;
-	public float positionY;
-	public float positionZ;
-	public float rotationX;
-	public float rotationY;
-	public float rotationZ;
-	public float rotationW;
+public class PlayerData : TransformData {
+	//leaving this open in case there ever becomes more data for player
 }

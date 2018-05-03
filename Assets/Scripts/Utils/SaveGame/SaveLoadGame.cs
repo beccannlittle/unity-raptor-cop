@@ -5,15 +5,14 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
-public class SaveGame : MonoBehaviour {
+public class SaveLoadGame : MonoBehaviour {
 	private ConstantsManager constantsManager;
 	void Awake() {
 		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
-		if (doesSaveFileExist ()) {
-			LoadFromFile ();
-		}
+		LoadFromFile ();
 	}
 	public bool doesSaveFileExist() {
 		return File.Exists (constantsManager.getSaveGamePath());
@@ -37,30 +36,37 @@ public class SaveGame : MonoBehaviour {
 			AddLevelData (sgd);
 			bf.Serialize (file, sgd);
 			file.Close ();
-			Debug.Log ("Saving the game(JSON): " + JsonUtility.ToJson (sgd));
-			Debug.Log ("Saving the game(JSON) LvlData: " + JsonUtility.ToJson (sgd.levelDict["Level01"]));
+			Debug.Log ("Saving '"+sgd.saveName+"' (JSON): " + JsonUtility.ToJson (sgd));
+			string sceneName = SceneManager.GetActiveScene ().name;
+			Debug.Log ("......Saving LvlData of "+sceneName+"(JSON): " + JsonUtility.ToJson (sgd.levelDict[sceneName]));
 		} else {
 			Debug.LogError ("Need a ConstantsManager.SaveGamePath in order to save.");
 		}
 	}
-
-	public void LoadFromFile(string sceneName = default(string)){
-		if(doesSaveFileExist()){
+	 
+	//public void LoadFromFile(string sceneName = default(string)){
+	public void LoadFromFile(){
+		if (doesSaveFileExist ()) {
 			//Load AppData
-			BinaryFormatter bf = new BinaryFormatter();
+			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream fs = File.Open (constantsManager.getSaveGamePath (), FileMode.Open);
 			SaveGameData sgd = (SaveGameData)bf.Deserialize (fs);
-			LoadApplicationData ();
-			if (sgd.levelDict.Count > 0) {
-				LoadLevelData (sgd.levelDict ["Level01"]);
-			}
 			Debug.Log ("Loading the game(JSON): " + JsonUtility.ToJson (sgd));
-			Debug.Log ("Loading the game(JSON) LvlData: " + JsonUtility.ToJson (sgd.levelDict["Level01"]));
 
-			if (!string.IsNullOrEmpty(sceneName)) {
-			//Look for levelData with this sceneName
+			LoadApplicationData ();
+
+			//Is there level Data for this scene?
+			string sceneName = SceneManager.GetActiveScene ().name;
+			if (sgd.levelDict.ContainsKey (sceneName)) {
+				LoadLevelData (sgd.levelDict [sceneName]);
+				Debug.Log ("Loading the game of "+sceneName+"(JSON) LvlData: " + JsonUtility.ToJson (sgd.levelDict [sceneName]));
 			} else {
-				Debug.Log ("No sceneName provided to SaveGame.LoadFromFile() |"+sceneName+"|");
+				Debug.Log ("The sceneName: "+sceneName);
+				List<string> keyList = new List<string>(sgd.levelDict.Keys);
+				foreach (string s in keyList) {
+					Debug.Log ("The Key Value: "+s);
+
+				}
 			}
 		}
 	}
@@ -78,7 +84,7 @@ public class SaveGame : MonoBehaviour {
 	public void AddLevelData(SaveGameData sgData){
 		LevelController levContrl = (LevelController) GameObject.FindWithTag ("LevelController").GetComponent (typeof(LevelController));
 		LevelData levData = levContrl.GenerateLevelData();
-		sgData.levelDict.Add("Level01",levData);
+		sgData.levelDict[levData.sceneName] = levData;
 
 	}
 	public void LoadLevelData(LevelData lData){

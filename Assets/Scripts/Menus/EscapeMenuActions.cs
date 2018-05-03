@@ -10,14 +10,14 @@ public class EscapeMenuActions : MonoBehaviour {
 
 	private ConstantsManager constantsManager;
 	private UIManager uiManager;
-	private SaveGame saveManager;
+	private SaveLoadGame saveManager;
 
 	void Awake() {
 		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
 		GameObject levelController = GameObject.FindGameObjectWithTag ("LevelController");
 		uiManager = levelController.GetComponent<UIManager> ();
-		saveManager = gameController.GetComponent<SaveGame> ();
+		saveManager = gameController.GetComponent<SaveLoadGame> ();
 	}
 
 	private void Pause() {

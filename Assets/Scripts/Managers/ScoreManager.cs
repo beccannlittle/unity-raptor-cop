@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour {
 
 	private ConstantsManager constantsManager;
-	private SaveGame saveManager;
+	private SaveLoadGame saveManager;
 
 	private float playerScore;
 	private int numSheepInExistence;
@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour {
 	void Awake () {
 		GameObject gameController = GameObject.FindGameObjectWithTag ("GameController");
 		constantsManager = gameController.GetComponent<ConstantsManager> ();
-		saveManager = gameController.GetComponent<SaveGame> ();
+		saveManager = gameController.GetComponent<SaveLoadGame> ();
 		QuerySheepRemaining ();
 	}
 		

@@ -29,16 +29,19 @@ public class Building : MonoBehaviour {
 		gameObject.transform.SetPositionAndRotation (deadzone, Quaternion.identity);
 		GameObject.Destroy (gameObject);
 	}
+	public BuildingData BuildBuildingData(){
+		BuildingData bd = new BuildingData ();
+		//Health
+		bd.health = GetComponent<Building> ().m_health.val;
+		bd.saveGameObjectDetails(gameObject);
+
+		return bd;
+
+	}
 }
 
 [Serializable]
-public class BuildingData {
+public class BuildingData : TransformData {
 	public float health;
-	public float positionX;
-	public float positionY;
-	public float positionZ;
-	public float rotationX;
-	public float rotationY;
-	public float rotationZ;
 
 }

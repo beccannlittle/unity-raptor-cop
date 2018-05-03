@@ -179,16 +179,18 @@ public class SheepEnemy : MonoBehaviour {
 	public void Die () {
 		gameObject.GetComponent<StateCartridgeController> ().state = StateCartridgeController.State.Dead;
 	}
+	public SheepData BuildSheepData(){
+		SheepData sd = new SheepData ();
+		sd.saveGameObjectDetails (gameObject);
+		sd.sheepstate = gameObject.GetComponent<StateCartridgeController> ().state;
+		return sd;
+	}
 }
 
 [Serializable]
-public class SheepData {
-	public float positionX;
-	public float positionY;
-	public float positionZ;
-	public float rotationX;
-	public float rotationY;
-	public float rotationZ;
+public class SheepData : TransformData {
 	public StateCartridgeController.State sheepstate;
+
+
 
 }
