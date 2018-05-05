@@ -8,64 +8,66 @@ using System.IO;
 public class Player : MonoBehaviour {
 
 	public float speed;
-	public float jumpForce;
+	public float attackForce;
+	public float attackCooldown;
 
-	InputManager inputManager;
 	Rigidbody rb;
+	Collider attackCol;
 
 	private void Awake() {
-		inputManager = GetComponent<InputManager>();
 		rb = GetComponent<Rigidbody> ();
+		attackCol = GetComponentInChildren<SphereCollider> ();
+		attackCol.enabled = false;
 	}
 
-	bool isGrounded;
-	void OnCollisionStay() {
-		isGrounded = true;
-	}
 	void OnCollisionEnter(Collision col){
-		if(col.gameObject.CompareTag("Sheep")){
-			col.gameObject.GetComponent<StateCartridgeController> ().state = StateCartridgeController.State.Dead;
+		Collider myCollider = col.contacts [0].thisCollider;
+		if (myCollider == attackCol) {
+			if (col.gameObject.CompareTag("Sheep")){
+				col.gameObject.GetComponent<SheepEnemy> ().Die ();
+			}
 		}
 	}	
+
 	void FixedUpdate () {
+		Move ();
+		if (Input.GetAxis ("Attack") == 1 && !isAttacking) {
+			StartCoroutine (Attack ());
+		}
+	}
+
+	private void Move() {
 		// Forward/backward
-		rb.MovePosition (transform.position + transform.forward * inputManager.CurrentForward * Time.deltaTime * speed);
+		rb.MovePosition (transform.position + transform.forward * Input.GetAxis ("Vertical") * Time.deltaTime * speed);
 		// Rotation
 		Vector3 tempRot = transform.rotation.eulerAngles;
-		tempRot.y += inputManager.CurrentRotation * Time.deltaTime;
+		tempRot.y += Input.GetAxis ("Horizontal") * 360 * Time.deltaTime;
 		rb.MoveRotation (Quaternion.Euler(tempRot));
-		// Jump
-		if (inputManager.CurrentJump == 1 && isGrounded) {
-			isGrounded = false;
-			rb.AddForce (Vector3.up*jumpForce, ForceMode.Impulse);
-		}
+	}
+
+	private bool isAttacking;
+
+	IEnumerator Attack() {
+		isAttacking = true;
+		attackCol.enabled = true;
+		rb.MovePosition (transform.position + transform.forward * Time.deltaTime * attackForce);
+		yield return new WaitForSeconds (attackCooldown);
+		attackCol.enabled = false;
+		isAttacking = false;
 	}
 	public PlayerData BuildPlayerData(){
 		PlayerData pd = new PlayerData ();
-		pd.positionX = transform.position.x;
-		pd.positionY = transform.position.y;
-		pd.positionZ = transform.position.z;
-
-		pd.rotationW = transform.rotation.w;
-		pd.rotationX = transform.rotation.x;
-		pd.rotationY = transform.rotation.y;
-		pd.rotationZ = transform.rotation.z;
+		pd.saveGameObjectDetails (gameObject);
 
 		return pd;
 	}
 	public void LoadPlayerData(PlayerData pd){
-		transform.position = new Vector3 (pd.positionX, pd.positionY, pd.positionZ);
-		transform.rotation = new Quaternion (pd.rotationX, pd.rotationY, pd.rotationZ, pd.rotationW);
+		transform.position = pd.getPositionVector3();
+		transform.rotation = pd.getRotationQuaternion ();
 	}
 }
 
 [Serializable]
-public class PlayerData {
-	public float positionX;
-	public float positionY;
-	public float positionZ;
-	public float rotationX;
-	public float rotationY;
-	public float rotationZ;
-	public float rotationW;
+public class PlayerData : TransformData {
+	//leaving this open in case there ever becomes more data for player
 }

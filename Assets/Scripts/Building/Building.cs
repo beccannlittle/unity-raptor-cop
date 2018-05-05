@@ -33,15 +33,7 @@ public class Building : MonoBehaviour {
 		BuildingData bd = new BuildingData ();
 		//Health
 		bd.health = GetComponent<Building> ().m_health.val;
-		//Location
-		bd.positionX = transform.position.x;
-		bd.positionY = transform.position.y;
-		bd.positionZ = transform.position.z;
-		//Rotation
-		bd.rotationW = transform.rotation.w;
-		bd.rotationX = transform.rotation.x;
-		bd.rotationY = transform.rotation.y;
-		bd.rotationZ = transform.rotation.z;
+		bd.saveGameObjectDetails(gameObject);
 
 		return bd;
 
@@ -49,13 +41,7 @@ public class Building : MonoBehaviour {
 }
 
 [Serializable]
-public class BuildingData {
+public class BuildingData : TransformData {
 	public float health;
-	public float positionX;
-	public float positionY;
-	public float positionZ;
-	public float rotationX;
-	public float rotationY;
-	public float rotationZ;
-	public float rotationW;
+
 }
