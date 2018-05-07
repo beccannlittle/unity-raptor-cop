@@ -27,6 +27,7 @@ public class Building : MonoBehaviour {
 		Vector3 deadzone = new Vector3 (0, -9000f, 0);
 		gameObject.SetActive (false);
 		gameObject.transform.SetPositionAndRotation (deadzone, Quaternion.identity);
+		GameObject.Find ("LevelController").GetComponent<ScoreManager> ().AddBuilding(-1);
 		GameObject.Destroy (gameObject);
 	}
 	public BuildingData BuildBuildingData(){
