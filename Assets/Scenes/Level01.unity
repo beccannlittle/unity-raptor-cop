@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -286,6 +286,11 @@ Prefab:
       propertyPath: buildingOBJHolder
       value: 
       objectReference: {fileID: 740995728}
+    - target: {fileID: 82586142602298384, guid: e44de4b56442a4ff99c9722460487342,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114302091401913442, guid: e44de4b56442a4ff99c9722460487342, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e44de4b56442a4ff99c9722460487342, type: 2}
@@ -457,6 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789bf6b884cd8834aba76525f632d706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 0}
   sheepPrefab: {fileID: 1183233802307334, guid: 57b4d44a3feed4a828ef15a5bb7d22ff,
     type: 2}
   buildingPrefab: {fileID: 1621779630937630, guid: d587602747198e147b1c6fcee0866383,
@@ -981,8 +987,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052242640}
-  m_LocalRotation: {x: -0.004653965, y: -0.99288297, z: 0.041417293, w: -0.1115635}
-  m_LocalPosition: {x: -122.596375, y: 247.08301, z: 51.566925}
+  m_LocalRotation: {x: -0.21797289, y: -0, z: -0, w: 0.97595483}
+  m_LocalPosition: {x: -114.41864, y: 233.69698, z: 21.518112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049477344}
