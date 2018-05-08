@@ -10,6 +10,9 @@ public class Meter {
 	public float maxThreshold;
 	public float minThreshold;
 
+	//BillboardDisplay
+	public RectTransform healthbar;
+
 	public Meter(float initval,float minv,float maxv, float minthresh, float maxthresh){
 		this.val = initval;
 		this.initialVal = initval;
@@ -20,20 +23,20 @@ public class Meter {
 	}
 
 	public void resetMeter(){
-		val = initialVal;
+		SetVal(initialVal);
 	}
 
 	public float addVal(float f){
 		//returns any excess value.
 		float newVal = val + f; 
 		if (newVal < minVal) {
-			val = minVal;
+			SetVal(minVal);
 			return newVal - minVal;
 		} else if (newVal > maxVal) {
-			val = maxVal;
+			SetVal(maxVal);
 			return newVal - maxVal;
 		} else {
-			val = newVal;
+			SetVal(newVal);
 			return 0.0f;
 		}
 	}
@@ -54,15 +57,29 @@ public class Meter {
 		return (val <= minThreshold);
 	}
 	public void SetToMin(){
-		val = minVal;
+		SetVal(minVal);
 	}
 	public void SetToMinThreshold(){
-		val = minThreshold;
+		SetVal(minThreshold);
 	}
 	public void SetToMax(){
-		val = maxVal;
+		SetVal(maxVal);
 	}
 	public void SetToMaxThreshold(){
-		val = maxThreshold;
+		SetVal(maxThreshold);
 	}
+	public float GetVal(){
+		return val;
+	}
+	public void SetVal(float newVal){
+		val = newVal;
+		UpdateHealthBar ();
+	}
+
+	public void UpdateHealthBar(){
+		if(healthbar != null){
+			healthbar.sizeDelta = new Vector2 (val, healthbar.sizeDelta.y);
+		}
+	}
+
 }

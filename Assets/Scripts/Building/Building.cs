@@ -7,6 +7,7 @@ using System.IO;
 
 public class Building : MonoBehaviour {
 	public Meter m_health;
+	public RectTransform healthbar;
 
 	public void Awake(){
 		Initialize ();
@@ -14,6 +15,7 @@ public class Building : MonoBehaviour {
 
 	public void Initialize(){
 		m_health = new Meter (45.0f,0.0f,45.0f,5.0f,45.0f);
+		m_health.healthbar = healthbar;
 	}
 
 	public void TakeDamage(float dmg){
