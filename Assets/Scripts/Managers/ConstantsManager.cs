@@ -8,6 +8,8 @@ public class ConstantsManager : MonoBehaviour {
 	[SerializeField]
 	private string titleScreen = "TitleScreen";
 	[SerializeField]
+	private string loseScreen = "LoseScreen";
+	[SerializeField]
 	private string[] levels;
 	[SerializeField]
 	private string credits = "Credits";
@@ -15,6 +17,9 @@ public class ConstantsManager : MonoBehaviour {
 	private string saveGamePath = "savegame.data";
 
 	public string getTitleScreen() { return titleScreen; }
+	public string getLoseScreen() { return loseScreen; }
+	public string getCredits() { return credits; }
+
 	public string getLevel(int index) { 
 		if (levels.Length > 0) {
 			return levels [index]; 
@@ -23,8 +28,6 @@ public class ConstantsManager : MonoBehaviour {
 			return titleScreen;
 		}
 	}
-	public string getCredits() { return credits; }
-
 	public string getSaveGamePath() {
 		return "" + Application.persistentDataPath + saveGamePath;
 	}
