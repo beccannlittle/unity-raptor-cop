@@ -37,5 +37,6 @@ public class Level01Controller : LevelController {
 			LoadCombatScene (data,sheepPrefab, buildingPrefab);
 		}
 		scoreManager.QuerySheepRemaining ();
+		scoreManager.QueryBuildingsRemaining ();
 	}
 }

@@ -286,6 +286,11 @@ Prefab:
       propertyPath: buildingOBJHolder
       value: 
       objectReference: {fileID: 740995728}
+    - target: {fileID: 82586142602298384, guid: e44de4b56442a4ff99c9722460487342,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114302091401913442, guid: e44de4b56442a4ff99c9722460487342, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e44de4b56442a4ff99c9722460487342, type: 2}
